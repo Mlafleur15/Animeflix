@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-<html lang="fr">
+<!DOCTYPE html><html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>StartFlix - Classiques</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FoodFlix</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
     body {
       margin: 0;
@@ -20,6 +19,64 @@
       font-weight: bold;
       color: red;
     }
+    .section {
+      padding: 1rem;
+    }
+    .title {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+    .card-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .card {
+      background-color: #1e1e1e;
+      width: 200px;
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .card img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+    }
+    .card .info {
+      padding: 0.5rem;
+    }
+    .card .info h3 {
+      font-size: 1rem;
+      margin: 0 0 0.3rem 0;
+    }
+    .recipe-list {
+      display: none;
+      padding: 1rem;
+    }
+    .recipe-list.active {
+      display: block;
+    }
+    .recipe-list h2 {
+      color: red;
+      margin-bottom: 1rem;
+    }
+    .recipe {
+      margin-bottom: 1.5rem;
+      background-color: #222;
+      padding: 1rem;
+      border-radius: 8px;
+    }
+    .recipe h4 {
+      margin: 0 0 0.5rem 0;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: #000;
+      color: #aaa;
+      font-size: 0.8rem;
+    }
     .category-buttons {
       display: flex;
       gap: 1rem;
@@ -32,123 +89,57 @@
       padding: 0.5rem 1rem;
       cursor: pointer;
       border-radius: 5px;
-      font-size: 1rem;
-    }
-    .episode-list {
-      display: none;
-      padding: 1rem;
-    }
-    .episode-list.active {
-      display: block;
-    }
-    .episode-list h2 {
-      color: red;
-      margin-bottom: 1rem;
-    }
-    iframe {
-      width: 100%;
-      height: 400px;
-      margin-bottom: 1rem;
-      border: none;
-    }
-    .episode-item {
-      background-color: #1e1e1e;
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-      padding: 0.5rem;
-      border-radius: 5px;
-      margin-bottom: 1rem;
-      cursor: pointer;
-    }
-    .episode-item img {
-      width: 120px;
-      height: auto;
-      border-radius: 5px;
-    }
-    .episode-item h4 {
-      margin: 0 0 0.5rem 0;
-    }
-    footer {
-      text-align: center;
-      padding: 1rem;
-      background-color: #000;
-      color: #aaa;
-      font-size: 0.8rem;
     }
   </style>
 </head>
 <body>
-
-  <header>StartFlix</header>
-
-  <div class="category-buttons">
-    <button onclick="showEpisodes()">🎬 Classiques</button>
-  </div>
-
-  <div class="episode-list" id="classiques">
-    <h2>Classiques du Domaine Public</h2>
-    <iframe id="videoPlayer" src="" allowfullscreen style="display: none;"></iframe>
-    <div id="episodeContainer"></div>
-    <button onclick="hideEpisodes()">Retour</button>
-  </div>
-
-  <footer>
-    © 2025 StartFlix - Films et Séries libres de droit
-  </footer>
-
-  <!-- Script des épisodes -->
-  <script>
-    const episodes = [
-      {
-        titre: "Steamboat Willie (1928)",
-        description: "Premier cartoon sonore de Mickey Mouse, désormais domaine public.",
-        image: "https://archive.org/services/img/steamboat_willie",
-        embed: "https://archive.org/embed/steamboat_willie"
-      },
-      {
-        titre: "Popeye Meets Sinbad (1937)",
-        description: "Popeye l’aventurier dans un conte oriental, animation classique.",
-        image: "https://archive.org/services/img/popeye_meets_sinbad",
-        embed: "https://archive.org/embed/popeye_meets_sinbad"
-      },
-      {
-        titre: "Betty Boop: Minnie the Moocher (1932)",
-        description: "Betty Boop et Cab Calloway dans une aventure musicale surréaliste.",
-        image: "https://archive.org/services/img/betty_boop_minnie_the_moocher",
-        embed: "https://archive.org/embed/betty_boop_minnie_the_moocher"
-      }
-    ];
-
-    const container = document.getElementById("episodeContainer");
-    const player = document.getElementById("videoPlayer");
-
-    episodes.forEach(ep => {
-      const div = document.createElement("div");
-      div.className = "episode-item";
-      div.innerHTML = `
-        <img src="${ep.image}" alt="${ep.titre}">
-        <div>
-          <h4>${ep.titre}</h4>
-          <p>${ep.description}</p>
-        </div>`;
-      div.onclick = () => {
-        player.src = ep.embed;
-        player.style.display = "block";
-        player.scrollIntoView({ behavior: "smooth" });
-      };
-      container.appendChild(div);
-    });
-
-    function showEpisodes() {
-      document.getElementById("classiques").classList.add("active");
+  <header>FoodFlix</header>  <!-- Boutons de catégories -->  <div class="category-buttons">
+    <button onclick="scrollToCategory('plats')">Plats</button>
+    <button onclick="scrollToCategory('desserts')">Desserts</button>
+    <button onclick="scrollToCategory('rapide')">Rapide</button>
+  </div>  <!-- Section catégorie Plats -->  <div class="section" id="plats">
+    <div class="title">Catégorie : Plats</div>
+    <div class="card-grid">
+      <!-- Ex. de plat principal -->
+      <div class="card" onclick="showRecipes('lasagnes')">
+        <!-- Tu peux remplacer ce lien par une image de ton choix -->
+        <img src="https://img.cuisineaz.com/660x660/2016/02/29/i100158-lasagnes-maison.jpeg" alt="Lasagnes" />
+        <div class="info">
+          <h3>Lasagnes maison</h3>
+        </div>
+      </div>
+    </div>
+  </div>  <!-- Liste des recettes Lasagnes -->  <div class="recipe-list" id="lasagnes">
+    <h2>Recette : Lasagnes maison</h2>
+    <div class="recipe">
+      <h4>Ingrédients :</h4>
+      <p>- 1 paquet de pâtes à lasagnes<br>
+         - 500g de viande hachée<br>
+         - 1 oignon, sauce tomate, béchamel, fromage râpé</p>
+    </div>
+    <div class="recipe">
+      <h4>Étapes :</h4>
+      <p>1. Faire revenir l'oignon, ajouter la viande, puis la sauce tomate.<br>
+         2. Dans un plat : pâte, sauce, béchamel, fromage. Répéter les couches.<br>
+         3. Cuire au four à 180°C pendant 35 min.</p>
+    </div>
+    <button onclick="hideRecipes()">Retour</button>
+  </div>  <footer>
+    © 2025 FoodFlix - Tous droits réservés
+  </footer>  <script>
+    function showRecipes(id) {
+      document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
+      document.querySelectorAll('.recipe-list').forEach(e => e.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
     }
 
-    function hideEpisodes() {
-      document.getElementById("classiques").classList.remove("active");
-      player.src = "";
-      player.style.display = "none";
+    function hideRecipes() {
+      document.querySelectorAll('.section').forEach(s => s.style.display = 'block');
+      document.querySelectorAll('.recipe-list').forEach(e => e.classList.remove('active'));
     }
-  </script>
-</body>
+
+    function scrollToCategory(id) {
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    }
+  </script></body>
 </html>
