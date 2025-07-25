@@ -20,32 +20,33 @@
       font-weight: bold;
       color: red;
     }
+    h2 {
+      margin-left: 1rem;
+      color: red;
+    }
     .category-section {
-      margin: 2rem 1rem;
+      margin-bottom: 2rem;
     }
-    .category-title {
-      font-size: 1.3rem;
-      margin-bottom: 0.5rem;
-    }
-    .scroll-container {
+    .recipe-row {
       display: flex;
       overflow-x: auto;
+      scroll-behavior: smooth;
       gap: 1rem;
-      scroll-snap-type: x mandatory;
-      padding-bottom: 1rem;
+      padding: 1rem;
     }
     .recipe-card {
-      flex: 0 0 auto;
-      width: 160px;
       background-color: #1e1e1e;
       border-radius: 8px;
+      min-width: 180px;
+      flex-shrink: 0;
       overflow: hidden;
       cursor: pointer;
-      scroll-snap-align: start;
+      display: flex;
+      flex-direction: column;
     }
     .recipe-card img {
       width: 100%;
-      height: 120px;
+      height: 150px;
       object-fit: cover;
     }
     .recipe-card .info {
@@ -65,67 +66,60 @@
   </style>
 </head>
 <body>
-  <header>FoodFlix</header>  <div class="category-section">
-    <div class="category-title">Plats</div>
-    <div class="scroll-container">
-      <div class="recipe-card" onclick="openRecipe('lasagnes')"><img src="img/lasagnes.jpeg" alt="Lasagnes"><div class="info"><h3>Lasagnes</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('couscous')"><img src="img/couscous.jpg" alt="Couscous"><div class="info"><h3>Couscous</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('tajine')"><img src="img/tajine.jpg" alt="Tajine"><div class="info"><h3>Tajine</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('gratin')"><img src="img/gratin.jpg" alt="Gratin"><div class="info"><h3>Gratin</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('pizza')"><img src="img/pizza.jpg" alt="Pizza"><div class="info"><h3>Pizza</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('quiche')"><img src="img/quiche.jpg" alt="Quiche"><div class="info"><h3>Quiche</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('paella')"><img src="img/paella.jpg" alt="Paella"><div class="info"><h3>Paella</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('spaghetti')"><img src="img/spaghetti.jpg" alt="Spaghetti"><div class="info"><h3>Spaghetti</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('burger')"><img src="img/burger.jpg" alt="Burger"><div class="info"><h3>Burger</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('blanquette')"><img src="img/blanquette.jpg" alt="Blanquette"><div class="info"><h3>Blanquette</h3></div></div>
-    </div>
-  </div>  <div class="category-section">
-    <div class="category-title">Desserts</div>
-    <div class="scroll-container">
-      <div class="recipe-card" onclick="openRecipe('tiramisu')"><img src="img/tiramisu.jpg" alt="Tiramisu"><div class="info"><h3>Tiramisu</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('fondant')"><img src="img/fondant.jpg" alt="Fondant"><div class="info"><h3>Fondant</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('cheesecake')"><img src="img/cheesecake.jpg" alt="Cheesecake"><div class="info"><h3>Cheesecake</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('clafoutis')"><img src="img/clafoutis.jpg" alt="Clafoutis"><div class="info"><h3>Clafoutis</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('mousse')"><img src="img/mousse.jpg" alt="Mousse"><div class="info"><h3>Mousse</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('brownie')"><img src="img/brownie.jpg" alt="Brownie"><div class="info"><h3>Brownie</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('cookies')"><img src="img/cookies.jpg" alt="Cookies"><div class="info"><h3>Cookies</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('cremebrulee')"><img src="img/cremebrulee.jpg" alt="Crème Brûlée"><div class="info"><h3>Crème Brûlée</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('tartecitron')"><img src="img/tartecitron.jpg" alt="Tarte au citron"><div class="info"><h3>Tarte au citron</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('gaufres')"><img src="img/gaufres.jpg" alt="Gaufres"><div class="info"><h3>Gaufres</h3></div></div>
-    </div>
-  </div>  <div class="category-section">
-    <div class="category-title">Apéro</div>
-    <div class="scroll-container">
-      <div class="recipe-card" onclick="openRecipe('feuilletes')"><img src="img/feuilletes.jpg" alt="Feuilletés"><div class="info"><h3>Feuilletés</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('gougeres')"><img src="img/gougeres.jpg" alt="Gougères"><div class="info"><h3>Gougères</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('rillettes')"><img src="img/rillettes.jpg" alt="Rillettes"><div class="info"><h3>Rillettes</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('tapas')"><img src="img/tapas.jpg" alt="Tapas"><div class="info"><h3>Tapas</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('cakeolive')"><img src="img/cakeolive.jpg" alt="Cake olives"><div class="info"><h3>Cake olives</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('saucissonpate')"><img src="img/saucissonpate.jpg" alt="Saucisson pâte"><div class="info"><h3>Saucisson pâte</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('tomateschevre')"><img src="img/tomateschevre.jpg" alt="Tomates chèvre"><div class="info"><h3>Tomates chèvre</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('wraps')"><img src="img/wraps.jpg" alt="Wraps froids"><div class="info"><h3>Wraps froids</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('nuggets')"><img src="img/nuggets.jpg" alt="Nuggets"><div class="info"><h3>Nuggets</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('minipizza')"><img src="img/minipizza.jpg" alt="Mini Pizza"><div class="info"><h3>Mini Pizza</h3></div></div>
-    </div>
-  </div>  <div class="category-section">
-    <div class="category-title">Rapide</div>
-    <div class="scroll-container">
-      <div class="recipe-card" onclick="openRecipe('croque-monsieur')"><img src="img/croque-monsieur.jpg" alt="Croque-Monsieur"><div class="info"><h3>Croque-Monsieur</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('wraps')"><img src="img/wraps.jpg" alt="Wraps froids"><div class="info"><h3>Wraps froids</h3></div></div>
+  <header>FoodFlix</header>  <!-- PLATS -->  <div class="category-section">
+    <h2>Plats</h2>
+    <div class="recipe-row">
+      <div class="recipe-card" onclick="openRecipe('lasagnes')"><img src="img/lasagnes.jpg" alt="Lasagnes"><div class="info"><h3>Lasagnes</h3></div></div>
+      <div class="recipe-card" onclick="openRecipe('couscous')"><img src="img/couscous.jpg" alt="Couscous"><div class="info"><h3>Couscous royal</h3></div></div>
+      <div class="recipe-card" onclick="openRecipe('tajine')"><img src="img/tajine.jpg" alt="Tajine"><div class="info"><h3>Tajine poulet</h3></div></div>
+      <div class="recipe-card" onclick="openRecipe('gratin')"><img src="img/gratin.jpg" alt="Gratin"><div class="info"><h3>Gratin dauphinois</h3></div></div>
       <div class="recipe-card" onclick="openRecipe('pizza')"><img src="img/pizza.jpg" alt="Pizza maison"><div class="info"><h3>Pizza maison</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('nuggets')"><img src="img/nuggets.jpg" alt="Nuggets"><div class="info"><h3>Nuggets</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('burger')"><img src="img/burger.jpg" alt="Burger maison"><div class="info"><h3>Burger maison</h3></div></div>
+      <div class="recipe-card" onclick="openRecipe('spaghetti')"><img src="img/spaghetti.jpg" alt="Spaghetti"><div class="info"><h3>Spaghetti bolognaise</h3></div></div>
+      <div class="recipe-card" onclick="openRecipe('quiche')"><img src="img/quiche.jpg" alt="Quiche"><div class="info"><h3>Quiche lorraine</h3></div></div>
+      <div class="recipe-card" onclick="openRecipe('burger')"><img src="img/burger.jpg" alt="Burger"><div class="info"><h3>Burger maison</h3></div></div>
+    </div>
+  </div>  <!-- DESSERTS -->  <div class="category-section">
+    <h2>Desserts</h2>
+    <div class="recipe-row">
+      <div class="recipe-card" onclick="openRecipe('fondant')"><img src="img/fondant.jpg" alt="Fondant"><div class="info"><h3>Fondant chocolat</h3></div></div>
+      <div class="recipe-card" onclick="openRecipe('cheesecake')"><img src="img/cheesecake.jpg" alt="Cheesecake"><div class="info"><h3>Cheesecake</h3></div></div>
+      <div class="recipe-card" onclick="openRecipe('mousse')"><img src="img/mousse.jpg" alt="Mousse"><div class="info"><h3>Mousse chocolat</h3></div></div>
+      <div class="recipe-card" onclick="openRecipe('clafoutis')"><img src="img/clafoutis.jpg" alt="Clafoutis"><div class="info"><h3>Clafoutis</h3></div></div>
+      <div class="recipe-card" onclick="openRecipe('cremebrulee')"><img src="img/cremebrulee.jpg" alt="Crème brûlée"><div class="info"><h3>Crème brûlée</h3></div></div>
       <div class="recipe-card" onclick="openRecipe('cookies')"><img src="img/cookies.jpg" alt="Cookies"><div class="info"><h3>Cookies</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('gaufres')"><img src="img/gaufres.jpg" alt="Gaufres"><div class="info"><h3>Gaufres</h3></div></div>
+      <div class="recipe-card" onclick="openRecipe('brownie')"><img src="img/brownie.jpg" alt="Brownie"><div class="info"><h3>Brownie</h3></div></div>
       <div class="recipe-card" onclick="openRecipe('tiramisu')"><img src="img/tiramisu.jpg" alt="Tiramisu"><div class="info"><h3>Tiramisu</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('feuilletes')"><img src="img/feuilletes.jpg" alt="Feuilletés"><div class="info"><h3>Feuilletés</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('wraps')"><img src="img/wraps.jpg" alt="Wraps froids"><div class="info"><h3>Wraps froids</h3></div></div>
+      <div class="recipe-card" onclick="openRecipe('gaufres')"><img src="img/gaufres.jpg" alt="Gaufres"><div class="info"><h3>Gaufres</h3></div></div>
+      <div class="recipe-card" onclick="openRecipe('pancakes')"><img src="img/pancakes.jpg" alt="Pancakes"><div class="info"><h3>Pancakes</h3></div></div>
+    </div>
+  </div>  <!-- APÉRO -->  <div class="category-section">
+    <h2>Apéro</h2>
+    <div class="recipe-row">
+      <div class="recipe-card" onclick="openRecipe('feuilletes')"><img src="img/feuilletes.jpg" alt="Feuilletés"><div class="info"><h3>Feuilletés apéro</h3></div></div>
+      <div class="recipe-card" onclick="openRecipe('gougeres')"><img src="img/gougeres.jpg" alt="Gougères"><div class="info"><h3>Gougères</h3></div></div>
+      <div class="recipe-card" onclick="openRecipe('cakeolive')"><img src="img/cakeolive.jpg" alt="Cake olives"><div class="info"><h3>Cake aux olives</h3></div></div>
+      <div class="recipe-card" onclick="openRecipe('saucissonpate')"><img src="img/saucissonpate.jpg" alt="Saucisson pâte"><div class="info"><h3>Saucisson en pâte</h3></div></div>
+      <div class="recipe-card" onclick="openRecipe('tomateschevre')"><img src="img/tomateschevre.jpg" alt="Tomates chèvre"><div class="info"><h3>Tomates au chèvre</h3></div></div>
+      <div class="recipe-card" onclick="openRecipe('rillettes')"><img src="img/rillettes.jpg" alt="Rillettes"><div class="info"><h3>Rillettes maison</h3></div></div>
+      <div class="recipe-card" onclick="openRecipe('tapas')"><img src="img/tapas.jpg" alt="Tapas"><div class="info"><h3>Tapas</h3></div></div>
+      <div class="recipe-card" onclick="openRecipe('nuggets')"><img src="img/nuggets.jpg" alt="Nuggets"><div class="info"><h3>Nuggets maison</h3></div></div>
+      <div class="recipe-card" onclick="openRecipe('minipizza')"><img src="img/minipizza.jpg" alt="Mini pizza"><div class="info"><h3>Mini pizza</h3></div></div>
+      <div class="recipe-card" onclick="openRecipe('wraps')"><img src="img/wraps.jpg" alt="Wraps"><div class="info"><h3>Wraps froids</h3></div></div>
+    </div>
+  </div>  <!-- RAPIDE -->  <div class="category-section">
+    <h2>Rapide</h2>
+    <div class="recipe-row">
+      <div class="recipe-card" onclick="openRecipe('croque-monsieur')"><img src="img/croque-monsieur.jpg" alt="Croque-Monsieur"><div class="info"><h3>Croque-Monsieur</h3></div></div>
+      <div class="recipe-card" onclick="openRecipe('wraps')"><img src="img/wraps.jpg" alt="Wraps"><div class="info"><h3>Wraps froids</h3></div></div>
+      <div class="recipe-card" onclick="openRecipe('nuggets')"><img src="img/nuggets.jpg" alt="Nuggets"><div class="info"><h3>Nuggets maison</h3></div></div>
+      <div class="recipe-card" onclick="openRecipe('minipizza')"><img src="img/minipizza.jpg" alt="Mini pizza"><div class="info"><h3>Mini pizza</h3></div></div>
+      <div class="recipe-card" onclick="openRecipe('pizza')"><img src="img/pizza.jpg" alt="Pizza maison"><div class="info"><h3>Pizza maison</h3></div></div>
     </div>
   </div>  <footer>
     © 2025 FoodFlix - Tous droits réservés
   </footer>  <script>
     function openRecipe(name) {
-      window.location.href = 'recettes/' + name + ".html";
+      window.location.href = `recettes/${name}.html`;
     }
   </script></body>
   </html>
