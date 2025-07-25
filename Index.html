@@ -22,27 +22,29 @@
     }
     h2 {
       margin-left: 1rem;
+      margin-top: 2rem;
       color: red;
     }
     .category-section {
-      margin-bottom: 2rem;
+      position: relative;
     }
-    .recipe-row {
+    .scroll-container {
       display: flex;
       overflow-x: auto;
       scroll-behavior: smooth;
-      gap: 1rem;
       padding: 1rem;
     }
+    .scroll-container::-webkit-scrollbar {
+      display: none;
+    }
     .recipe-card {
+      flex: 0 0 auto;
+      width: 180px;
       background-color: #1e1e1e;
       border-radius: 8px;
-      min-width: 180px;
-      flex-shrink: 0;
       overflow: hidden;
       cursor: pointer;
-      display: flex;
-      flex-direction: column;
+      margin-right: 1rem;
     }
     .recipe-card img {
       width: 100%;
@@ -56,6 +58,24 @@
       font-size: 1rem;
       margin: 0;
     }
+    .scroll-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 2rem;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      z-index: 1;
+      padding: 0.5rem;
+    }
+    .scroll-btn.left {
+      left: 0;
+    }
+    .scroll-btn.right {
+      right: 0;
+    }
     footer {
       text-align: center;
       padding: 1rem;
@@ -66,60 +86,89 @@
   </style>
 </head>
 <body>
-  <header>FoodFlix</header>  <!-- PLATS -->  <div class="category-section">
-    <h2>Plats</h2>
-    <div class="recipe-row">
-      <div class="recipe-card" onclick="openRecipe('lasagnes')"><img src="img/lasagnes.jpg" alt="Lasagnes"><div class="info"><h3>Lasagnes</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('couscous')"><img src="img/couscous.jpg" alt="Couscous"><div class="info"><h3>Couscous royal</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('tajine')"><img src="img/tajine.jpg" alt="Tajine"><div class="info"><h3>Tajine poulet</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('gratin')"><img src="img/gratin.jpg" alt="Gratin"><div class="info"><h3>Gratin dauphinois</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('pizza')"><img src="img/pizza.jpg" alt="Pizza maison"><div class="info"><h3>Pizza maison</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('spaghetti')"><img src="img/spaghetti.jpg" alt="Spaghetti"><div class="info"><h3>Spaghetti bolognaise</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('quiche')"><img src="img/quiche.jpg" alt="Quiche"><div class="info"><h3>Quiche lorraine</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('burger')"><img src="img/burger.jpg" alt="Burger"><div class="info"><h3>Burger maison</h3></div></div>
-    </div>
-  </div>  <!-- DESSERTS -->  <div class="category-section">
-    <h2>Desserts</h2>
-    <div class="recipe-row">
-      <div class="recipe-card" onclick="openRecipe('fondant')"><img src="img/fondant.jpg" alt="Fondant"><div class="info"><h3>Fondant chocolat</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('cheesecake')"><img src="img/cheesecake.jpg" alt="Cheesecake"><div class="info"><h3>Cheesecake</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('mousse')"><img src="img/mousse.jpg" alt="Mousse"><div class="info"><h3>Mousse chocolat</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('clafoutis')"><img src="img/clafoutis.jpg" alt="Clafoutis"><div class="info"><h3>Clafoutis</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('cremebrulee')"><img src="img/cremebrulee.jpg" alt="Crème brûlée"><div class="info"><h3>Crème brûlée</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('cookies')"><img src="img/cookies.jpg" alt="Cookies"><div class="info"><h3>Cookies</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('brownie')"><img src="img/brownie.jpg" alt="Brownie"><div class="info"><h3>Brownie</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('tiramisu')"><img src="img/tiramisu.jpg" alt="Tiramisu"><div class="info"><h3>Tiramisu</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('gaufres')"><img src="img/gaufres.jpg" alt="Gaufres"><div class="info"><h3>Gaufres</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('pancakes')"><img src="img/pancakes.jpg" alt="Pancakes"><div class="info"><h3>Pancakes</h3></div></div>
-    </div>
-  </div>  <!-- APÉRO -->  <div class="category-section">
-    <h2>Apéro</h2>
-    <div class="recipe-row">
-      <div class="recipe-card" onclick="openRecipe('feuilletes')"><img src="img/feuilletes.jpg" alt="Feuilletés"><div class="info"><h3>Feuilletés apéro</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('gougeres')"><img src="img/gougeres.jpg" alt="Gougères"><div class="info"><h3>Gougères</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('cakeolive')"><img src="img/cakeolive.jpg" alt="Cake olives"><div class="info"><h3>Cake aux olives</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('saucissonpate')"><img src="img/saucissonpate.jpg" alt="Saucisson pâte"><div class="info"><h3>Saucisson en pâte</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('tomateschevre')"><img src="img/tomateschevre.jpg" alt="Tomates chèvre"><div class="info"><h3>Tomates au chèvre</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('rillettes')"><img src="img/rillettes.jpg" alt="Rillettes"><div class="info"><h3>Rillettes maison</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('tapas')"><img src="img/tapas.jpg" alt="Tapas"><div class="info"><h3>Tapas</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('nuggets')"><img src="img/nuggets.jpg" alt="Nuggets"><div class="info"><h3>Nuggets maison</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('minipizza')"><img src="img/minipizza.jpg" alt="Mini pizza"><div class="info"><h3>Mini pizza</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('wraps')"><img src="img/wraps.jpg" alt="Wraps"><div class="info"><h3>Wraps froids</h3></div></div>
-    </div>
-  </div>  <!-- RAPIDE -->  <div class="category-section">
-    <h2>Rapide</h2>
-    <div class="recipe-row">
-      <div class="recipe-card" onclick="openRecipe('croque-monsieur')"><img src="img/croque-monsieur.jpg" alt="Croque-Monsieur"><div class="info"><h3>Croque-Monsieur</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('wraps')"><img src="img/wraps.jpg" alt="Wraps"><div class="info"><h3>Wraps froids</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('nuggets')"><img src="img/nuggets.jpg" alt="Nuggets"><div class="info"><h3>Nuggets maison</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('minipizza')"><img src="img/minipizza.jpg" alt="Mini pizza"><div class="info"><h3>Mini pizza</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('pizza')"><img src="img/pizza.jpg" alt="Pizza maison"><div class="info"><h3>Pizza maison</h3></div></div>
-    </div>
-  </div>  <footer>
+  <header>FoodFlix</header>  <div id="categories"></div>  <footer>
     © 2025 FoodFlix - Tous droits réservés
   </footer>  <script>
-    function openRecipe(name) {
-      window.location.href = `recettes/${name}.html`;
+    const data = {
+      "Plats": ["lasagnes", "couscous", "tajine", "gratin", "pizza", "spaghetti", "quiche", "burger"],
+      "Desserts": ["fondant", "cheesecake", "mousse", "clafoutis", "cremebrulee", "cookies", "brownie", "tiramisu", "gaufres", "pancakes"],
+      "Apéro": ["feuilletes", "gougeres", "cakeolive", "saucissonpate", "tomateschevre", "rillettes", "tapas", "nuggets", "minipizza", "wraps"]
+    };
+
+    const images = {
+      lasagnes: "lasagnes.jpg",
+      couscous: "couscous.jpg",
+      tajine: "tajine.jpg",
+      gratin: "gratin.jpg",
+      pizza: "pizza.jpg",
+      spaghetti: "spaghetti.jpg",
+      quiche: "quiche.jpg",
+      burger: "burger.jpg",
+      fondant: "fondant.jpg",
+      cheesecake: "cheesecake.jpg",
+      mousse: "mousse.jpg",
+      clafoutis: "clafoutis.jpg",
+      cremebrulee: "cremebrulee.jpg",
+      cookies: "cookies.jpg",
+      brownie: "brownie.jpg",
+      tiramisu: "tiramisu.jpg",
+      gaufres: "gaufres.jpg",
+      pancakes: "pancakes.jpg",
+      feuilletes: "feuilletes.jpg",
+      gougeres: "gougeres.jpg",
+      cakeolive: "cakeolive.jpg",
+      saucissonpate: "saucissonpate.jpg",
+      tomateschevre: "tomateschevre.jpg",
+      rillettes: "rillettes.jpg",
+      tapas: "tapas.jpg",
+      nuggets: "nuggets.jpg",
+      minipizza: "minipizza.jpg",
+      wraps: "wraps.jpg"
+    };
+
+    const container = document.getElementById('categories');
+
+    for (let category in data) {
+      const section = document.createElement('div');
+      section.className = 'category-section';
+
+      const title = document.createElement('h2');
+      title.textContent = category;
+      section.appendChild(title);
+
+      const scroll = document.createElement('div');
+      scroll.className = 'scroll-container';
+      scroll.id = `scroll-${category}`;
+
+      data[category].forEach(name => {
+        const card = document.createElement('div');
+        card.className = 'recipe-card';
+        card.onclick = () => window.location.href = `recettes/${name}.html`;
+        card.innerHTML = `
+          <img src="img/${images[name]}" alt="${name}" />
+          <div class="info"><h3>${capitalize(name)}</h3></div>
+        `;
+        scroll.appendChild(card);
+      });
+
+      const btnLeft = document.createElement('button');
+      btnLeft.className = 'scroll-btn left';
+      btnLeft.innerHTML = '<i class="fas fa-chevron-left"></i>';
+      btnLeft.onclick = () => scroll.scrollBy({ left: -400, behavior: 'smooth' });
+
+      const btnRight = document.createElement('button');
+      btnRight.className = 'scroll-btn right';
+      btnRight.innerHTML = '<i class="fas fa-chevron-right"></i>';
+      btnRight.onclick = () => scroll.scrollBy({ left: 400, behavior: 'smooth' });
+
+      section.appendChild(btnLeft);
+      section.appendChild(scroll);
+      section.appendChild(btnRight);
+      container.appendChild(section);
+    }
+
+    function capitalize(str) {
+      return str.charAt(0).toUpperCase() + str.slice(1).replace('-', ' ');
     }
   </script></body>
-  </html>
+</html>
