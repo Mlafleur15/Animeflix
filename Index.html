@@ -2,7 +2,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AnimeFlix</title>
+  <title>StartFlix</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     body {
@@ -61,12 +61,27 @@
       color: red;
       margin-bottom: 1rem;
     }
-    .episode {
-      margin-bottom: 0.5rem;
+    .episode-item {
+      display: flex;
+      align-items: flex-start;
+      background-color: #1e1e1e;
+      border-radius: 8px;
+      margin-bottom: 1rem;
       cursor: pointer;
+      padding: 0.5rem;
     }
-    .episode:hover {
-      text-decoration: underline;
+    .episode-item img {
+      width: 120px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 5px;
+      margin-right: 1rem;
+    }
+    .episode-item .details {
+      flex-grow: 1;
+    }
+    .episode-item .details h4 {
+      margin: 0 0 0.3rem;
     }
     iframe {
       width: 100%;
@@ -97,7 +112,7 @@
   </style>
 </head>
 <body>
-  <header>AnimeFlix</header>  <!-- Boutons de catégories -->  <div class="category-buttons">
+  <header>StartFlix</header>  <!-- Boutons de catégories -->  <div class="category-buttons">
     <button onclick="scrollToCategory('anime')">Animé</button>
     <button onclick="scrollToCategory('action')">Action</button>
     <button onclick="scrollToCategory('romance')">Romance</button>
@@ -113,17 +128,13 @@
       </div>
     </div>
   </div>  <!-- Liste des épisodes de Death Note -->  <div class="episode-list" id="deathnote">
-    <h2>Death Note - Saison 1</h2><!-- Player vidéo intégré -->
-<iframe id="videoPlayer" src="" allowfullscreen></iframe>
-
-<!-- Liste des épisodes générée automatiquement -->
-<div id="episodeContainer"></div>
-
-<button onclick="hideEpisodes()">Retour</button>
-
+    <h2>Death Note - Saison 1</h2>
+    <iframe id="videoPlayer" src="" allowfullscreen></iframe>
+    <div id="episodeContainer"></div>
+    <button onclick="hideEpisodes()">Retour</button>
   </div>  <footer>
-    © 2025 AnimeFlix - Tous droits réservés
-  </footer>  <!-- Inclusion du fichier episodes.js -->  <script src="episodes.js"></script>  <script>
+    © 2025 StartFlix - Tous droits réservés
+  </footer>  <!-- Fichier JS des épisodes -->  <script src="episodes.js"></script>  <script>
     function showEpisodes(id) {
       document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
       document.querySelectorAll('.episode-list').forEach(e => e.classList.remove('active'));
@@ -139,17 +150,33 @@
       document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
     }
 
-    // Génération des épisodes dans la page
     const container = document.getElementById("episodeContainer");
-    episodes.forEach((ep, index) => {
+    episodes.forEach(ep => {
       const div = document.createElement("div");
-      div.className = "episode";
-      div.innerText = ep.titre;
+      div.className = "episode-item";
+
+      const img = document.createElement("img");
+      img.src = ep.image;
+
+      const detail = document.createElement("div");
+      detail.className = "details";
+
+      const titre = document.createElement("h4");
+      titre.textContent = ep.titre;
+
+      const desc = document.createElement("p");
+      desc.textContent = ep.description;
+
+      detail.appendChild(titre);
+      detail.appendChild(desc);
+
+      div.appendChild(img);
+      div.appendChild(detail);
+
       div.onclick = () => {
-        // Affiche l'épisode dans l'iframe
-        const videoId = ep.lien.split("v=")[1];
-        document.getElementById("videoPlayer").src = `https://www.youtube.com/embed/${videoId}`;
-      }
+        document.getElementById("videoPlayer").src = ep.embed;
+      };
+
       container.appendChild(div);
     });
   </script></body>
