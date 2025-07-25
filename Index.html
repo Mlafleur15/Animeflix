@@ -20,23 +20,32 @@
       font-weight: bold;
       color: red;
     }
-    .grid-recipes {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    .category-section {
+      margin: 2rem 1rem;
+    }
+    .category-title {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+    .scroll-container {
+      display: flex;
+      overflow-x: auto;
       gap: 1rem;
-      padding: 1rem;
+      scroll-snap-type: x mandatory;
+      padding-bottom: 1rem;
     }
     .recipe-card {
+      flex: 0 0 auto;
+      width: 160px;
       background-color: #1e1e1e;
       border-radius: 8px;
       overflow: hidden;
       cursor: pointer;
-      display: flex;
-      flex-direction: column;
+      scroll-snap-align: start;
     }
     .recipe-card img {
       width: 100%;
-      height: 150px;
+      height: 120px;
       object-fit: cover;
     }
     .recipe-card .info {
@@ -56,46 +65,67 @@
   </style>
 </head>
 <body>
-  <header>FoodFlix</header>  <div class="grid-recipes">
-    <!-- 30 Recettes -->
-    <div class="recipe-card" onclick="openRecipe('recettes/lasagnes')"><img src="https://img.cuisineaz.com/660x660/2016/02/29/i100158-lasagnes-maison.jpeg" alt="Lasagnes"><div class="info"><h3>Lasagnes</h3></div></div>
-    <div class="recipe-card" onclick="openRecipe('couscous')"><img src="https://assets.afcdn.com/recipe/20221201/136312_w1024h768c1cx1920cy1280cxt0cyt0cxb1920cyb2560.jpg" alt="Couscous royal"><div class="info"><h3>Couscous royal</h3></div></div>
-    <div class="recipe-card" onclick="openRecipe('croque-monsieur')"><img src="https://img.cuisineaz.com/660x660/2019/04/29/i146776-croque-monsieur.jpeg" alt="Croque-Monsieur"><div class="info"><h3>Croque-Monsieur</h3></div></div>
-    <div class="recipe-card" onclick="openRecipe('tiramisu')"><img src="https://assets.afcdn.com/recipe/20170607/67492_w1024h768.jpg" alt="Tiramisu"><div class="info"><h3>Tiramisu</h3></div></div>
-    <div class="recipe-card" onclick="openRecipe('burger')"><img src="https://img.cuisineaz.com/660x660/2019/02/26/i145501-burger-fait-maison.jpeg" alt="Burger maison"><div class="info"><h3>Burger maison</h3></div></div>
-    <div class="recipe-card" onclick="openRecipe('tajine')"><img src="https://assets.afcdn.com/recipe/20201210/116949_w1024h768.jpg" alt="Tajine poulet"><div class="info"><h3>Tajine poulet</h3></div></div>
-    <div class="recipe-card" onclick="openRecipe('spaghetti')"><img src="https://img.cuisineaz.com/660x660/2021/12/14/i159947-spaghetti-bolognaise.jpeg" alt="Spaghetti bolognaise"><div class="info"><h3>Spaghetti bolognaise</h3></div></div>
-    <div class="recipe-card" onclick="openRecipe('quiche')"><img src="https://assets.afcdn.com/recipe/20171220/75555_w1024h768c1cx1920cy1280.jpg" alt="Quiche lorraine"><div class="info"><h3>Quiche lorraine</h3></div></div>
-    <div class="recipe-card" onclick="openRecipe('gratin')"><img src="https://assets.afcdn.com/recipe/20180328/78129_w1024h768.jpg" alt="Gratin dauphinois"><div class="info"><h3>Gratin dauphinois</h3></div></div>
-    <div class="recipe-card" onclick="openRecipe('pizza')"><img src="https://img.cuisineaz.com/660x660/2015/12/09/i117943-pizza-maison.jpeg" alt="Pizza maison"><div class="info"><h3>Pizza maison</h3></div></div><!-- Desserts -->
-<div class="recipe-card" onclick="openRecipe('fondant')"><img src="https://img.cuisineaz.com/660x660/2016/02/12/i100046-fondant-au-chocolat.jpeg" alt="Fondant chocolat"><div class="info"><h3>Fondant chocolat</h3></div></div>
-<div class="recipe-card" onclick="openRecipe('mousse')"><img src="https://img.cuisineaz.com/660x660/2021/06/08/i158572-mousse-au-chocolat.jpeg" alt="Mousse chocolat"><div class="info"><h3>Mousse chocolat</h3></div></div>
-<div class="recipe-card" onclick="openRecipe('cheesecake')"><img src="https://img.cuisineaz.com/660x660/2021/03/18/i158000-cheesecake-new-yorkais.jpeg" alt="Cheesecake"><div class="info"><h3>Cheesecake</h3></div></div>
-<div class="recipe-card" onclick="openRecipe('cremebrulee')"><img src="https://img.cuisineaz.com/660x660/2015/04/22/i113308-creme-brulee.jpeg" alt="Crème brûlée"><div class="info"><h3>Crème brûlée</h3></div></div>
-<div class="recipe-card" onclick="openRecipe('cookies')"><img src="https://img.cuisineaz.com/660x660/2022/05/04/i165007-cookies-moelleux.jpeg" alt="Cookies"><div class="info"><h3>Cookies</h3></div></div>
-<div class="recipe-card" onclick="openRecipe('brownie')"><img src="https://img.cuisineaz.com/660x660/2020/07/08/i152843-brownie.jpeg" alt="Brownie"><div class="info"><h3>Brownie</h3></div></div>
-<div class="recipe-card" onclick="openRecipe('clafoutis')"><img src="https://img.cuisineaz.com/660x660/2022/06/08/i165601-clafoutis.jpeg" alt="Clafoutis"><div class="info"><h3>Clafoutis</h3></div></div>
-<div class="recipe-card" onclick="openRecipe('gaufres')"><img src="https://img.cuisineaz.com/660x660/2021/01/18/i157452-gaufres.jpeg" alt="Gaufres"><div class="info"><h3>Gaufres</h3></div></div>
-<div class="recipe-card" onclick="openRecipe('pancakes')"><img src="https://img.cuisineaz.com/660x660/2016/03/15/i101318-pancakes.jpeg" alt="Pancakes"><div class="info"><h3>Pancakes</h3></div></div>
-<div class="recipe-card" onclick="openRecipe('tartecitron')"><img src="https://img.cuisineaz.com/660x660/2022/06/16/i165731-tarte-au-citron.jpeg" alt="Tarte au citron"><div class="info"><h3>Tarte au citron</h3></div></div>
-
-<!-- Apéros -->
-<div class="recipe-card" onclick="openRecipe('minipizza')"><img src="https://assets.afcdn.com/recipe/20201203/116676_w1024h768.jpg" alt="Mini pizza"><div class="info"><h3>Mini pizza</h3></div></div>
-<div class="recipe-card" onclick="openRecipe('feuilletes')"><img src="https://img.cuisineaz.com/660x660/2015/12/08/i117918-feuilletes-apero.jpeg" alt="Feuilletés apéro"><div class="info"><h3>Feuilletés apéro</h3></div></div>
-<div class="recipe-card" onclick="openRecipe('gougeres')"><img src="https://img.cuisineaz.com/660x660/2017/04/26/i127683-gougeres.jpeg" alt="Gougères"><div class="info"><h3>Gougères</h3></div></div>
-<div class="recipe-card" onclick="openRecipe('cakeolive')"><img src="https://img.cuisineaz.com/660x660/2015/12/14/i118006-cake-aux-olives.jpeg" alt="Cake olives"><div class="info"><h3>Cake aux olives</h3></div></div>
-<div class="recipe-card" onclick="openRecipe('saucissonpate')"><img src="https://img.cuisineaz.com/660x660/2021/07/02/i158895-saucisson-en-pate.jpeg" alt="Saucisson pâte"><div class="info"><h3>Saucisson en pâte</h3></div></div>
-<div class="recipe-card" onclick="openRecipe('wraps')"><img src="https://img.cuisineaz.com/660x660/2016/03/15/i101304-wraps.jpeg" alt="Wraps froids"><div class="info"><h3>Wraps froids</h3></div></div>
-<div class="recipe-card" onclick="openRecipe('nuggets')"><img src="https://img.cuisineaz.com/660x660/2017/05/10/i127859-nuggets-maison.jpeg" alt="Nuggets maison"><div class="info"><h3>Nuggets maison</h3></div></div>
-<div class="recipe-card" onclick="openRecipe('tomateschevre')"><img src="https://img.cuisineaz.com/660x660/2015/12/07/i117870-tomates-au-chevre.jpeg" alt="Tomates chèvre"><div class="info"><h3>Tomates au chèvre</h3></div></div>
-<div class="recipe-card" onclick="openRecipe('rillettes')"><img src="https://img.cuisineaz.com/660x660/2016/02/03/i99751-rillettes.jpeg" alt="Rillettes maison"><div class="info"><h3>Rillettes maison</h3></div></div>
-<div class="recipe-card" onclick="openRecipe('tapas')"><img src="https://img.cuisineaz.com/660x660/2015/12/07/i117853-tapas.jpeg" alt="Tapas"><div class="info"><h3>Tapas</h3></div></div>
-
+  <header>FoodFlix</header>  <div class="category-section">
+    <div class="category-title">Plats</div>
+    <div class="scroll-container">
+      <div class="recipe-card" onclick="openRecipe('lasagnes')"><img src="img/lasagnes.jpg" alt="Lasagnes"><div class="info"><h3>Lasagnes</h3></div></div>
+      <div class="recipe-card" onclick="openRecipe('couscous')"><img src="img/couscous.jpg" alt="Couscous"><div class="info"><h3>Couscous</h3></div></div>
+      <div class="recipe-card" onclick="openRecipe('tajine')"><img src="img/tajine.jpg" alt="Tajine"><div class="info"><h3>Tajine</h3></div></div>
+      <div class="recipe-card" onclick="openRecipe('gratin')"><img src="img/gratin.jpg" alt="Gratin"><div class="info"><h3>Gratin</h3></div></div>
+      <div class="recipe-card" onclick="openRecipe('pizza')"><img src="img/pizza.jpg" alt="Pizza"><div class="info"><h3>Pizza</h3></div></div>
+      <div class="recipe-card" onclick="openRecipe('quiche')"><img src="img/quiche.jpg" alt="Quiche"><div class="info"><h3>Quiche</h3></div></div>
+      <div class="recipe-card" onclick="openRecipe('paella')"><img src="img/paella.jpg" alt="Paella"><div class="info"><h3>Paella</h3></div></div>
+      <div class="recipe-card" onclick="openRecipe('spaghetti')"><img src="img/spaghetti.jpg" alt="Spaghetti"><div class="info"><h3>Spaghetti</h3></div></div>
+      <div class="recipe-card" onclick="openRecipe('burger')"><img src="img/burger.jpg" alt="Burger"><div class="info"><h3>Burger</h3></div></div>
+      <div class="recipe-card" onclick="openRecipe('blanquette')"><img src="img/blanquette.jpg" alt="Blanquette"><div class="info"><h3>Blanquette</h3></div></div>
+    </div>
+  </div>  <div class="category-section">
+    <div class="category-title">Desserts</div>
+    <div class="scroll-container">
+      <div class="recipe-card" onclick="openRecipe('tiramisu')"><img src="img/tiramisu.jpg" alt="Tiramisu"><div class="info"><h3>Tiramisu</h3></div></div>
+      <div class="recipe-card" onclick="openRecipe('fondant')"><img src="img/fondant.jpg" alt="Fondant"><div class="info"><h3>Fondant</h3></div></div>
+      <div class="recipe-card" onclick="openRecipe('cheesecake')"><img src="img/cheesecake.jpg" alt="Cheesecake"><div class="info"><h3>Cheesecake</h3></div></div>
+      <div class="recipe-card" onclick="openRecipe('clafoutis')"><img src="img/clafoutis.jpg" alt="Clafoutis"><div class="info"><h3>Clafoutis</h3></div></div>
+      <div class="recipe-card" onclick="openRecipe('mousse')"><img src="img/mousse.jpg" alt="Mousse"><div class="info"><h3>Mousse</h3></div></div>
+      <div class="recipe-card" onclick="openRecipe('brownie')"><img src="img/brownie.jpg" alt="Brownie"><div class="info"><h3>Brownie</h3></div></div>
+      <div class="recipe-card" onclick="openRecipe('cookies')"><img src="img/cookies.jpg" alt="Cookies"><div class="info"><h3>Cookies</h3></div></div>
+      <div class="recipe-card" onclick="openRecipe('cremebrulee')"><img src="img/cremebrulee.jpg" alt="Crème Brûlée"><div class="info"><h3>Crème Brûlée</h3></div></div>
+      <div class="recipe-card" onclick="openRecipe('tartecitron')"><img src="img/tartecitron.jpg" alt="Tarte au citron"><div class="info"><h3>Tarte au citron</h3></div></div>
+      <div class="recipe-card" onclick="openRecipe('gaufres')"><img src="img/gaufres.jpg" alt="Gaufres"><div class="info"><h3>Gaufres</h3></div></div>
+    </div>
+  </div>  <div class="category-section">
+    <div class="category-title">Apéro</div>
+    <div class="scroll-container">
+      <div class="recipe-card" onclick="openRecipe('feuilletes')"><img src="img/feuilletes.jpg" alt="Feuilletés"><div class="info"><h3>Feuilletés</h3></div></div>
+      <div class="recipe-card" onclick="openRecipe('gougeres')"><img src="img/gougeres.jpg" alt="Gougères"><div class="info"><h3>Gougères</h3></div></div>
+      <div class="recipe-card" onclick="openRecipe('rillettes')"><img src="img/rillettes.jpg" alt="Rillettes"><div class="info"><h3>Rillettes</h3></div></div>
+      <div class="recipe-card" onclick="openRecipe('tapas')"><img src="img/tapas.jpg" alt="Tapas"><div class="info"><h3>Tapas</h3></div></div>
+      <div class="recipe-card" onclick="openRecipe('cakeolive')"><img src="img/cakeolive.jpg" alt="Cake olives"><div class="info"><h3>Cake olives</h3></div></div>
+      <div class="recipe-card" onclick="openRecipe('saucissonpate')"><img src="img/saucissonpate.jpg" alt="Saucisson pâte"><div class="info"><h3>Saucisson pâte</h3></div></div>
+      <div class="recipe-card" onclick="openRecipe('tomateschevre')"><img src="img/tomateschevre.jpg" alt="Tomates chèvre"><div class="info"><h3>Tomates chèvre</h3></div></div>
+      <div class="recipe-card" onclick="openRecipe('wraps')"><img src="img/wraps.jpg" alt="Wraps froids"><div class="info"><h3>Wraps froids</h3></div></div>
+      <div class="recipe-card" onclick="openRecipe('nuggets')"><img src="img/nuggets.jpg" alt="Nuggets"><div class="info"><h3>Nuggets</h3></div></div>
+      <div class="recipe-card" onclick="openRecipe('minipizza')"><img src="img/minipizza.jpg" alt="Mini Pizza"><div class="info"><h3>Mini Pizza</h3></div></div>
+    </div>
+  </div>  <div class="category-section">
+    <div class="category-title">Rapide</div>
+    <div class="scroll-container">
+      <div class="recipe-card" onclick="openRecipe('croque-monsieur')"><img src="img/croque-monsieur.jpg" alt="Croque-Monsieur"><div class="info"><h3>Croque-Monsieur</h3></div></div>
+      <div class="recipe-card" onclick="openRecipe('wraps')"><img src="img/wraps.jpg" alt="Wraps froids"><div class="info"><h3>Wraps froids</h3></div></div>
+      <div class="recipe-card" onclick="openRecipe('pizza')"><img src="img/pizza.jpg" alt="Pizza maison"><div class="info"><h3>Pizza maison</h3></div></div>
+      <div class="recipe-card" onclick="openRecipe('nuggets')"><img src="img/nuggets.jpg" alt="Nuggets"><div class="info"><h3>Nuggets</h3></div></div>
+      <div class="recipe-card" onclick="openRecipe('burger')"><img src="img/burger.jpg" alt="Burger maison"><div class="info"><h3>Burger maison</h3></div></div>
+      <div class="recipe-card" onclick="openRecipe('cookies')"><img src="img/cookies.jpg" alt="Cookies"><div class="info"><h3>Cookies</h3></div></div>
+      <div class="recipe-card" onclick="openRecipe('gaufres')"><img src="img/gaufres.jpg" alt="Gaufres"><div class="info"><h3>Gaufres</h3></div></div>
+      <div class="recipe-card" onclick="openRecipe('tiramisu')"><img src="img/tiramisu.jpg" alt="Tiramisu"><div class="info"><h3>Tiramisu</h3></div></div>
+      <div class="recipe-card" onclick="openRecipe('feuilletes')"><img src="img/feuilletes.jpg" alt="Feuilletés"><div class="info"><h3>Feuilletés</h3></div></div>
+      <div class="recipe-card" onclick="openRecipe('wraps')"><img src="img/wraps.jpg" alt="Wraps froids"><div class="info"><h3>Wraps froids</h3></div></div>
+    </div>
   </div>  <footer>
     © 2025 FoodFlix - Tous droits réservés
   </footer>  <script>
     function openRecipe(name) {
-      window.location.href = name + ".html";
+      window.location.href = 'recettes/' + name + ".html";
     }
   </script></body>
-</html>
+  </html>
