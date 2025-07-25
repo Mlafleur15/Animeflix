@@ -1,28 +1,34 @@
-// Fichier : episodes.js
-// Rajoute ici tes épisodes, un par un
-// Tu modifies juste le titre et le lien (YouTube)
+// Fichier episodes.js (à mettre au même niveau que index.html)
 
-// ⚠️ Ne change pas le nom 'episodes' en dessous
 const episodes = [
   {
     titre: "Épisode 1 - Renaissance",
-    lien: "https://www.youtube.com/watch?v=VLWk3S2tSPk"
+    description: "Light découvre le Death Note et rencontre Ryuk.",
+    image: "https://i.ytimg.com/vi/VLWk3S2tSPk/hqdefault.jpg",
+    embed: "https://www.youtube.com/embed/VLWk3S2tSPk"
   },
   {
     titre: "Épisode 2 - Duel",
-    lien: "https://www.youtube.com/watch?v=pkUe3LcvRMg"
+    description: "L arrive dans l’affaire et défie Kira.",
+    image: "https://i.ytimg.com/vi/pkUe3LcvRMg/hqdefault.jpg",
+    embed: "https://www.youtube.com/embed/pkUe3LcvRMg"
   },
   {
     titre: "Épisode 3 - Affrontement",
-    lien: "https://www.youtube.com/watch?v=GEwWZBdQqYc"
+    description: "L continue son enquête et se rapproche.",
+    image: "https://i.ytimg.com/vi/GEwWZBdQqYc/hqdefault.jpg",
+    embed: "https://www.youtube.com/embed/GEwWZBdQqYc"
   },
   {
     titre: "Épisode 4 - Poursuite",
-    lien: "https://www.youtube.com/watch?v=XYqZgTfuKp4"
+    description: "Light teste les limites du carnet.",
+    image: "https://i.ytimg.com/vi/XYqZgTfuKp4/hqdefault.jpg",
+    embed: "https://www.youtube.com/embed/XYqZgTfuKp4"
   },
   {
     titre: "Épisode 5 - Déclaration",
-    lien: "https://www.youtube.com/watch?v=6hNE7AEl2og"
+    description: "Le monde commence à parler de Kira.",
+    image: "https://i.ytimg.com/vi/6hNE7AEl2og/hqdefault.jpg",
+    embed: "https://www.youtube.com/embed/6hNE7AEl2og"
   }
-  // ➕ Copie-colle ce bloc pour ajouter les suivants
 ];
