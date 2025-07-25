@@ -76,19 +76,25 @@
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background-color: rgba(0, 0, 0, 0.5);
+      background-color: rgba(0, 0, 0, 0.7);
       color: white;
       border: none;
-      font-size: 1.5rem;
+      font-size: 2rem;
       padding: 0.5rem;
       cursor: pointer;
-      z-index: 1;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 40px;
+      width: 40px;
+      border-radius: 50%;
     }
     .scroll-left {
-      left: 0;
+      left: 5px;
     }
     .scroll-right {
-      right: 0;
+      right: 5px;
     }
     footer {
       text-align: center;
@@ -96,6 +102,13 @@
       background-color: #000;
       color: #aaa;
       font-size: 0.8rem;
+    }
+    @media (max-width: 768px) {
+      .scroll-buttons {
+        font-size: 1.5rem;
+        height: 30px;
+        width: 30px;
+      }
     }
   </style>
 </head>
@@ -107,32 +120,40 @@
     <button onclick="scrollToCategory('apero')">Apéro</button>
   </div>  <div class="section" id="plats">
     <div class="title">Plats</div>
-    <button class="scroll-buttons scroll-left" onclick="scrollRow('plats-row', -300)">&#10094;</button>
-    <button class="scroll-buttons scroll-right" onclick="scrollRow('plats-row', 300)">&#10095;</button>
-    <div class="card-row" id="plats-row">
-      <div class="card" onclick="openRecipe('lasagnes')"><img src="https://img.cuisineaz.com/660x660/2016/02/29/i100158-lasagnes-maison.jpeg" alt="Lasagnes"><div class="info"><h3>Lasagnes</h3></div></div>
-      <div class="card" onclick="openRecipe('couscous')"><img src="https://assets.afcdn.com/recipe/20221201/136312_w1024h768c1cx1920cy1280cxt0cyt0cxb1920cyb2560.jpg" alt="Couscous"><div class="info"><h3>Couscous</h3></div></div>
+    <div class="card-row-container">
+      <button class="scroll-buttons scroll-left" onclick="scrollRow('plats-row', -300)">&#10094;</button>
+      <div class="card-row" id="plats-row">
+        <div class="card" onclick="openRecipe('lasagnes')"><img src="https://img.cuisineaz.com/660x660/2016/02/29/i100158-lasagnes-maison.jpeg" alt="Lasagnes"><div class="info"><h3>Lasagnes</h3></div></div>
+        <div class="card" onclick="openRecipe('couscous')"><img src="https://assets.afcdn.com/recipe/20221201/136312_w1024h768c1cx1920cy1280cxt0cyt0cxb1920cyb2560.jpg" alt="Couscous"><div class="info"><h3>Couscous</h3></div></div>
+      </div>
+      <button class="scroll-buttons scroll-right" onclick="scrollRow('plats-row', 300)">&#10095;</button>
     </div>
   </div>  <div class="section" id="desserts">
     <div class="title">Desserts</div>
-    <button class="scroll-buttons scroll-left" onclick="scrollRow('desserts-row', -300)">&#10094;</button>
-    <button class="scroll-buttons scroll-right" onclick="scrollRow('desserts-row', 300)">&#10095;</button>
-    <div class="card-row" id="desserts-row">
-      <div class="card" onclick="openRecipe('tiramisu')"><img src="https://assets.afcdn.com/recipe/20170607/67492_w1024h768c1cx4032cy3024cxt0cyt0cxb4032cyb3024.jpg" alt="Tiramisu"><div class="info"><h3>Tiramisu</h3></div></div>
+    <div class="card-row-container">
+      <button class="scroll-buttons scroll-left" onclick="scrollRow('desserts-row', -300)">&#10094;</button>
+      <div class="card-row" id="desserts-row">
+        <div class="card" onclick="openRecipe('tiramisu')"><img src="https://assets.afcdn.com/recipe/20170607/67492_w1024h768c1cx4032cy3024cxt0cyt0cxb4032cyb3024.jpg" alt="Tiramisu"><div class="info"><h3>Tiramisu</h3></div></div>
+      </div>
+      <button class="scroll-buttons scroll-right" onclick="scrollRow('desserts-row', 300)">&#10095;</button>
     </div>
   </div>  <div class="section" id="rapide">
     <div class="title">Rapide</div>
-    <button class="scroll-buttons scroll-left" onclick="scrollRow('rapide-row', -300)">&#10094;</button>
-    <button class="scroll-buttons scroll-right" onclick="scrollRow('rapide-row', 300)">&#10095;</button>
-    <div class="card-row" id="rapide-row">
-      <div class="card" onclick="openRecipe('croque')"><img src="https://img.cuisineaz.com/660x660/2016/03/04/i94126-croque-monsieur.jpeg" alt="Croque"><div class="info"><h3>Croque-Monsieur</h3></div></div>
+    <div class="card-row-container">
+      <button class="scroll-buttons scroll-left" onclick="scrollRow('rapide-row', -300)">&#10094;</button>
+      <div class="card-row" id="rapide-row">
+        <div class="card" onclick="openRecipe('croque')"><img src="https://img.cuisineaz.com/660x660/2016/03/04/i94126-croque-monsieur.jpeg" alt="Croque"><div class="info"><h3>Croque-Monsieur</h3></div></div>
+      </div>
+      <button class="scroll-buttons scroll-right" onclick="scrollRow('rapide-row', 300)">&#10095;</button>
     </div>
   </div>  <div class="section" id="apero">
     <div class="title">Apéro</div>
-    <button class="scroll-buttons scroll-left" onclick="scrollRow('apero-row', -300)">&#10094;</button>
-    <button class="scroll-buttons scroll-right" onclick="scrollRow('apero-row', 300)">&#10095;</button>
-    <div class="card-row" id="apero-row">
-      <div class="card" onclick="openRecipe('minipizza')"><img src="https://assets.afcdn.com/recipe/20201203/116676_w1024h768c1cx4032cy3024cxt0cyt0cxb4032cyb3024.jpg" alt="Mini pizza"><div class="info"><h3>Mini pizza</h3></div></div>
+    <div class="card-row-container">
+      <button class="scroll-buttons scroll-left" onclick="scrollRow('apero-row', -300)">&#10094;</button>
+      <div class="card-row" id="apero-row">
+        <div class="card" onclick="openRecipe('minipizza')"><img src="https://assets.afcdn.com/recipe/20201203/116676_w1024h768c1cx4032cy3024cxt0cyt0cxb4032cyb3024.jpg" alt="Mini pizza"><div class="info"><h3>Mini pizza</h3></div></div>
+      </div>
+      <button class="scroll-buttons scroll-right" onclick="scrollRow('apero-row', 300)">&#10095;</button>
     </div>
   </div>  <footer>
     © 2025 FoodFlix - Tous droits réservés
@@ -148,4 +169,4 @@
       window.location.href = name + ".html";
     }
   </script></body>
-</html>
+                                                             </html>
