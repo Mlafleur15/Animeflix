@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>StartFlix - Death Note</title>
+  <title>StartFlix - Classiques</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     body {
@@ -20,36 +20,19 @@
       font-weight: bold;
       color: red;
     }
-    .section {
+    .category-buttons {
+      display: flex;
+      gap: 1rem;
       padding: 1rem;
     }
-    .title {
-      font-size: 1.2rem;
-      margin-bottom: 0.5rem;
-    }
-    .anime-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-    .anime-card {
-      background-color: #1e1e1e;
-      width: 200px;
-      border-radius: 8px;
-      overflow: hidden;
+    .category-buttons button {
+      background-color: red;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
       cursor: pointer;
-    }
-    .anime-card img {
-      width: 100%;
-      height: 280px;
-      object-fit: cover;
-    }
-    .anime-card .info {
-      padding: 0.5rem;
-    }
-    .anime-card .info h3 {
+      border-radius: 5px;
       font-size: 1rem;
-      margin: 0 0 0.3rem 0;
     }
     .episode-list {
       display: none;
@@ -68,24 +51,23 @@
       margin-bottom: 1rem;
       border: none;
     }
-    .category-buttons {
-      display: flex;
-      gap: 1rem;
-      padding: 1rem;
-    }
-    .category-buttons button {
-      background-color: red;
-      color: white;
-      border: none;
-      padding: 0.5rem 1rem;
-      cursor: pointer;
-      border-radius: 5px;
-    }
-    .episode {
+    .episode-item {
       background-color: #1e1e1e;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
       padding: 0.5rem;
       border-radius: 5px;
-      margin-bottom: 0.5rem;
+      margin-bottom: 1rem;
+      cursor: pointer;
+    }
+    .episode-item img {
+      width: 120px;
+      height: auto;
+      border-radius: 5px;
+    }
+    .episode-item h4 {
+      margin: 0 0 0.5rem 0;
     }
     footer {
       text-align: center;
@@ -97,55 +79,75 @@
   </style>
 </head>
 <body>
+
   <header>StartFlix</header>
 
   <div class="category-buttons">
-    <button onclick="scrollToCategory('anime')">Animé</button>
-    <button onclick="scrollToCategory('action')">Action</button>
-    <button onclick="scrollToCategory('romance')">Romance</button>
+    <button onclick="showEpisodes()">🎬 Classiques</button>
   </div>
 
-  <div class="section" id="anime">
-    <div class="title">Catégorie : Animé</div>
-    <div class="anime-grid">
-      <div class="anime-card" onclick="showEpisodes('deathnote')">
-        <img src="https://i.ytimg.com/vi/NlJZ-YgAt-c/maxresdefault.jpg" alt="Death Note">
-        <div class="info">
-          <h3>Death Note</h3>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="episode-list" id="deathnote">
-    <h2>Death Note - Saison 1</h2>
+  <div class="episode-list" id="classiques">
+    <h2>Classiques du Domaine Public</h2>
     <iframe id="videoPlayer" src="" allowfullscreen style="display: none;"></iframe>
     <div id="episodeContainer"></div>
     <button onclick="hideEpisodes()">Retour</button>
   </div>
 
   <footer>
-    © 2025 StartFlix - Tous droits réservés
+    © 2025 StartFlix - Films et Séries libres de droit
   </footer>
 
-  <!-- Script épisodes -->
-  <script src="episodes.js"></script>
+  <!-- Script des épisodes -->
   <script>
-    function showEpisodes(id) {
-      document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
-      document.querySelectorAll('.episode-list').forEach(e => e.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
+    const episodes = [
+      {
+        titre: "Steamboat Willie (1928)",
+        description: "Premier cartoon sonore de Mickey Mouse, désormais domaine public.",
+        image: "https://archive.org/services/img/steamboat_willie",
+        embed: "https://archive.org/embed/steamboat_willie"
+      },
+      {
+        titre: "Popeye Meets Sinbad (1937)",
+        description: "Popeye l’aventurier dans un conte oriental, animation classique.",
+        image: "https://archive.org/services/img/popeye_meets_sinbad",
+        embed: "https://archive.org/embed/popeye_meets_sinbad"
+      },
+      {
+        titre: "Betty Boop: Minnie the Moocher (1932)",
+        description: "Betty Boop et Cab Calloway dans une aventure musicale surréaliste.",
+        image: "https://archive.org/services/img/betty_boop_minnie_the_moocher",
+        embed: "https://archive.org/embed/betty_boop_minnie_the_moocher"
+      }
+    ];
+
+    const container = document.getElementById("episodeContainer");
+    const player = document.getElementById("videoPlayer");
+
+    episodes.forEach(ep => {
+      const div = document.createElement("div");
+      div.className = "episode-item";
+      div.innerHTML = `
+        <img src="${ep.image}" alt="${ep.titre}">
+        <div>
+          <h4>${ep.titre}</h4>
+          <p>${ep.description}</p>
+        </div>`;
+      div.onclick = () => {
+        player.src = ep.embed;
+        player.style.display = "block";
+        player.scrollIntoView({ behavior: "smooth" });
+      };
+      container.appendChild(div);
+    });
+
+    function showEpisodes() {
+      document.getElementById("classiques").classList.add("active");
     }
 
     function hideEpisodes() {
-      document.querySelectorAll('.section').forEach(s => s.style.display = 'block');
-      document.querySelectorAll('.episode-list').forEach(e => e.classList.remove('active'));
-      document.getElementById("videoPlayer").style.display = "none";
-      document.getElementById("videoPlayer").src = "";
-    }
-
-    function scrollToCategory(id) {
-      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+      document.getElementById("classiques").classList.remove("active");
+      player.src = "";
+      player.style.display = "none";
     }
   </script>
 </body>
