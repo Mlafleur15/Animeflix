@@ -63,10 +63,16 @@
     }
     .episode {
       margin-bottom: 0.5rem;
+      cursor: pointer;
     }
-    .episode a {
-      color: #00bfff;
-      text-decoration: none;
+    .episode:hover {
+      text-decoration: underline;
+    }
+    iframe {
+      width: 100%;
+      height: 400px;
+      margin-bottom: 1rem;
+      border: none;
     }
     .category-buttons {
       display: flex;
@@ -107,57 +113,17 @@
       </div>
     </div>
   </div>  <!-- Liste des épisodes de Death Note -->  <div class="episode-list" id="deathnote">
-    <h2>Death Note - Saison 1</h2><!-- Exemple d'épisodes avec commentaires -->
+    <h2>Death Note - Saison 1</h2><!-- Player vidéo intégré -->
+<iframe id="videoPlayer" src="" allowfullscreen></iframe>
 
-<!-- Épisode 1 -->
-<div class="episode">
-  <a href="https://www.youtube.com/watch?v=VLWk3S2tSPk" target="_blank">
-    Épisode 1 - Renaissance
-  </a>
-</div>
-
-<!-- Épisode 2 -->
-<div class="episode">
-  <a href="https://www.youtube.com/watch?v=pkUe3LcvRMg" target="_blank">
-    Épisode 2 - Duel
-  </a>
-</div>
-
-<!-- Épisode 3 -->
-<div class="episode">
-  <a href="https://www.youtube.com/watch?v=GEwWZBdQqYc" target="_blank">
-    Épisode 3 - Affrontement
-  </a>
-</div>
-
-<!-- Épisode 4 -->
-<div class="episode">
-  <a href="https://www.youtube.com/watch?v=XYqZgTfuKp4" target="_blank">
-    Épisode 4 - Poursuite
-  </a>
-</div>
-
-<!-- Épisode 5 -->
-<div class="episode">
-  <a href="https://www.youtube.com/watch?v=6hNE7AEl2og" target="_blank">
-    Épisode 5 - Déclaration
-  </a>
-</div>
-
-<!-- Copie ce modèle pour les prochains épisodes -->
-<!--
-<div class="episode">
-  <a href="LIEN_YOUTUBE" target="_blank">
-    Épisode X - TITRE
-  </a>
-</div>
--->
+<!-- Liste des épisodes générée automatiquement -->
+<div id="episodeContainer"></div>
 
 <button onclick="hideEpisodes()">Retour</button>
 
   </div>  <footer>
     © 2025 AnimeFlix - Tous droits réservés
-  </footer>  <script>
+  </footer>  <!-- Inclusion du fichier episodes.js -->  <script src="episodes.js"></script>  <script>
     function showEpisodes(id) {
       document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
       document.querySelectorAll('.episode-list').forEach(e => e.classList.remove('active'));
@@ -172,5 +138,19 @@
     function scrollToCategory(id) {
       document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
     }
+
+    // Génération des épisodes dans la page
+    const container = document.getElementById("episodeContainer");
+    episodes.forEach((ep, index) => {
+      const div = document.createElement("div");
+      div.className = "episode";
+      div.innerText = ep.titre;
+      div.onclick = () => {
+        // Affiche l'épisode dans l'iframe
+        const videoId = ep.lien.split("v=")[1];
+        document.getElementById("videoPlayer").src = `https://www.youtube.com/embed/${videoId}`;
+      }
+      container.appendChild(div);
+    });
   </script></body>
 </html>
