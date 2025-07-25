@@ -20,32 +20,31 @@
       font-weight: bold;
       color: red;
     }
-    h2 {
-      margin-left: 1rem;
-      margin-top: 2rem;
+    .category {
+      padding: 1rem;
     }
-    .carousel-container {
-      position: relative;
-      margin: 1rem;
+    .category h2 {
+      margin-bottom: 0.5rem;
+      color: red;
     }
     .carousel {
       display: flex;
       overflow-x: auto;
+      scroll-snap-type: x mandatory;
       scroll-behavior: smooth;
-      gap: 1rem;
-      padding: 1rem 0;
     }
     .carousel::-webkit-scrollbar {
       display: none;
     }
     .recipe-card {
-      flex: 0 0 calc(100% / 5 - 1rem);
+      flex: 0 0 calc(100% / 5);
+      max-width: calc(100% / 5);
       background-color: #1e1e1e;
       border-radius: 8px;
       overflow: hidden;
       cursor: pointer;
-      display: flex;
-      flex-direction: column;
+      scroll-snap-align: start;
+      margin-right: 1rem;
     }
     .recipe-card img {
       width: 100%;
@@ -59,23 +58,19 @@
       font-size: 1rem;
       margin: 0;
     }
-    .arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 2rem;
-      background-color: rgba(0, 0, 0, 0.5);
-      color: white;
+    .arrows {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 0.5rem;
+    }
+    .arrows button {
+      background-color: red;
       border: none;
+      color: white;
+      font-size: 1rem;
+      padding: 0.3rem 0.6rem;
       cursor: pointer;
-      padding: 0 0.5rem;
-      z-index: 10;
-    }
-    .left {
-      left: 0;
-    }
-    .right {
-      right: 0;
+      border-radius: 5px;
     }
     footer {
       text-align: center;
@@ -83,44 +78,93 @@
       background-color: #000;
       color: #aaa;
       font-size: 0.8rem;
-    }@media screen and (max-width: 768px) {
-  .recipe-card {
-    flex: 0 0 calc(100% / 3 - 1rem);
-  }
-}
-@media screen and (max-width: 480px) {
-  .recipe-card {
-    flex: 0 0 calc(100% / 2 - 1rem);
-  }
-}
-
+    }
+    @media (max-width: 768px) {
+      .recipe-card {
+        flex: 0 0 calc(100% / 4);
+        max-width: calc(100% / 4);
+      }
+    }
   </style>
 </head>
 <body>
-  <header>FoodFlix</header>  <!-- Exemple d'une catégorie -->  <h2>Plats</h2>
-  <div class="carousel-container">
-    <button class="arrow left" onclick="scrollLeft('carousel1')">&#10094;</button>
-    <div class="carousel" id="carousel1">
-      <div class="recipe-card" onclick="openRecipe('lasagnes')"><img src="img/lasagnes.jpg" alt="Lasagnes"><div class="info"><h3>Lasagnes</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('couscous')"><img src="img/couscous.jpg" alt="Couscous"><div class="info"><h3>Couscous</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('croque-monsieur')"><img src="img/croque-monsieur.jpg" alt="Croque-Monsieur"><div class="info"><h3>Croque-Monsieur</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('tajine')"><img src="img/tajine.jpg" alt="Tajine"><div class="info"><h3>Tajine</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('burger')"><img src="img/burger.jpg" alt="Burger"><div class="info"><h3>Burger</h3></div></div>
-    </div>
-    <button class="arrow right" onclick="scrollRight('carousel1')">&#10095;</button>
-  </div>  <footer>
+  <header>FoodFlix</header>  <div id="content"></div>  <footer>
     © 2025 FoodFlix - Tous droits réservés
   </footer>  <script>
-    function openRecipe(name) {
-      window.location.href = `recettes/${name}.html`;
-    }
+    const recipesByCategory = {
+      "Plats": [
+        { name: "Lasagnes", img: "img/lasagnes.jpg" },
+        { name: "Couscous royal", img: "img/couscous.jpg" },
+        { name: "Croque-Monsieur", img: "img/croque.jpg" },
+        { name: "Tajine poulet", img: "img/tajine.jpg" },
+        { name: "Spaghetti bolognaise", img: "img/spaghetti.jpg" },
+        { name: "Quiche lorraine", img: "img/quiche.jpg" },
+        { name: "Gratin dauphinois", img: "img/gratin.jpg" },
+        { name: "Pizza maison", img: "img/pizza.jpg" },
+        { name: "Wraps froids", img: "img/wraps.jpg" },
+        { name: "Nuggets maison", img: "img/nuggets.jpg" }
+      ],
+      "Desserts": [
+        { name: "Tiramisu", img: "img/tiramisu.jpg" },
+        { name: "Fondant chocolat", img: "img/fondant.jpg" },
+        { name: "Mousse chocolat", img: "img/mousse.jpg" },
+        { name: "Cheesecake", img: "img/cheesecake.jpg" },
+        { name: "Crème brûlée", img: "img/cremebrulee.jpg" },
+        { name: "Cookies", img: "img/cookies.jpg" },
+        { name: "Brownie", img: "img/brownie.jpg" },
+        { name: "Clafoutis", img: "img/clafoutis.jpg" },
+        { name: "Gaufres", img: "img/gaufres.jpg" },
+        { name: "Pancakes", img: "img/pancakes.jpg" }
+      ],
+      "Apéro": [
+        { name: "Mini pizza", img: "img/minipizza.jpg" },
+        { name: "Feuilletés apéro", img: "img/feuilletes.jpg" },
+        { name: "Gougères", img: "img/gougeres.jpg" },
+        { name: "Cake aux olives", img: "img/cakeolive.jpg" },
+        { name: "Saucisson en pâte", img: "img/saucissonpate.jpg" },
+        { name: "Tomates au chèvre", img: "img/tomateschevre.jpg" },
+        { name: "Rillettes maison", img: "img/rillettes.jpg" },
+        { name: "Tapas", img: "img/tapas.jpg" },
+        { name: "Chips maison", img: "img/chips.jpg" },
+        { name: "Bouchées fromage", img: "img/bouchees.jpg" }
+      ],
+      "Rapide": [
+        { name: "Croque-Monsieur", img: "img/croque.jpg" },
+        { name: "Wraps froids", img: "img/wraps.jpg" },
+        { name: "Mini pizza", img: "img/minipizza.jpg" },
+        { name: "Nuggets maison", img: "img/nuggets.jpg" },
+        { name: "Cookies", img: "img/cookies.jpg" },
+        { name: "Gaufres", img: "img/gaufres.jpg" },
+        { name: "Pancakes", img: "img/pancakes.jpg" },
+        { name: "Rillettes maison", img: "img/rillettes.jpg" },
+        { name: "Tapas", img: "img/tapas.jpg" },
+        { name: "Feuilletés apéro", img: "img/feuilletes.jpg" }
+      ]
+    };
 
-    function scrollLeft(id) {
-      document.getElementById(id).scrollBy({ left: -300, behavior: 'smooth' });
-    }
+    const content = document.getElementById("content");
+    for (const [category, recipes] of Object.entries(recipesByCategory)) {
+      const section = document.createElement("div");
+      section.className = "category";
+      section.innerHTML = `<h2>${category}</h2>`;
 
-    function scrollRight(id) {
-      document.getElementById(id).scrollBy({ left: 300, behavior: 'smooth' });
+      const carousel = document.createElement("div");
+      carousel.className = "carousel";
+      carousel.id = `carousel-${category}`;
+
+      recipes.forEach((r) => {
+        const div = document.createElement("div");
+        div.className = "recipe-card";
+        div.onclick = () => window.location.href = `recettes/${r.name.toLowerCase().replace(/\s+/g, '-')}.html`;
+        div.innerHTML = `
+          <img src="${r.img}" alt="${r.name}">
+          <div class="info"><h3>${r.name}</h3></div>
+        `;
+        carousel.appendChild(div);
+      });
+
+      section.appendChild(carousel);
+      content.appendChild(section);
     }
   </script></body>
 </html>
