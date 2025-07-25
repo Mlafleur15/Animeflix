@@ -20,81 +20,31 @@
       font-weight: bold;
       color: red;
     }
-    .section {
-      padding: 1rem;
-      position: relative;
-    }
-    .title {
-      font-size: 1.2rem;
-      margin-bottom: 0.5rem;
-    }
-    .card-row {
-      display: flex;
-      overflow-x: auto;
-      scroll-behavior: smooth;
+    .grid-recipes {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
       gap: 1rem;
-      padding-bottom: 1rem;
+      padding: 1rem;
     }
-    .card-row::-webkit-scrollbar {
-      display: none;
-    }
-    .card {
+    .recipe-card {
       background-color: #1e1e1e;
-      width: 200px;
       border-radius: 8px;
       overflow: hidden;
       cursor: pointer;
-      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
     }
-    .card img {
+    .recipe-card img {
       width: 100%;
       height: 150px;
       object-fit: cover;
     }
-    .card .info {
+    .recipe-card .info {
       padding: 0.5rem;
     }
-    .card .info h3 {
+    .recipe-card .info h3 {
       font-size: 1rem;
-      margin: 0 0 0.3rem 0;
-    }
-    .category-buttons {
-      display: flex;
-      gap: 1rem;
-      padding: 1rem;
-      flex-wrap: wrap;
-    }
-    .category-buttons button {
-      background-color: red;
-      color: white;
-      border: none;
-      padding: 0.5rem 1rem;
-      cursor: pointer;
-      border-radius: 5px;
-    }
-    .scroll-buttons {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background-color: rgba(0, 0, 0, 0.7);
-      color: white;
-      border: none;
-      font-size: 2rem;
-      padding: 0.5rem;
-      cursor: pointer;
-      z-index: 10;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 40px;
-      width: 40px;
-      border-radius: 50%;
-    }
-    .scroll-left {
-      left: 5px;
-    }
-    .scroll-right {
-      right: 5px;
+      margin: 0;
     }
     footer {
       text-align: center;
@@ -103,90 +53,49 @@
       color: #aaa;
       font-size: 0.8rem;
     }
-    @media (max-width: 768px) {
-      .scroll-buttons {
-        font-size: 1.5rem;
-        height: 30px;
-        width: 30px;
-      }
-    }
   </style>
 </head>
 <body>
-  <header>FoodFlix</header>  <div class="category-buttons">
-    <button onclick="scrollToCategory('plats')">Plats</button>
-    <button onclick="scrollToCategory('desserts')">Desserts</button>
-    <button onclick="scrollToCategory('rapide')">Rapide</button>
-    <button onclick="scrollToCategory('apero')">Apéro</button>
-  </div>  <div class="section" id="plats">
-    <div class="title">Plats</div>
-    <div class="card-row-container">
-      <button class="scroll-buttons scroll-left" onclick="scrollRow('plats-row', -300)">&#10094;</button>
-      <div class="card-row" id="plats-row">
-        <!-- Plats (10) -->
-        <div class="card" onclick="openRecipe('lasagnes')"><img src="https://img.cuisineaz.com/660x660/2016/02/29/i100158-lasagnes-maison.jpeg"><div class="info"><h3>Lasagnes</h3></div></div>
-        <div class="card" onclick="openRecipe('couscous')"><img src="https://assets.afcdn.com/recipe/20221201/136312_w1024h768.jpg"><div class="info"><h3>Couscous</h3></div></div>
-        <div class="card" onclick="openRecipe('spaghetti')"><img src="https://img.cuisineaz.com/660x660/2021/12/14/i159947-spaghetti-bolognaise.jpeg"><div class="info"><h3>Spaghetti</h3></div></div>
-        <div class="card" onclick="openRecipe('tajine')"><img src="https://assets.afcdn.com/recipe/20201210/116949_w1024h768.jpg"><div class="info"><h3>Tajine</h3></div></div>
-        <div class="card" onclick="openRecipe('soupe')"><img src="https://img.cuisineaz.com/660x660/2018/01/22/i136450-soupe-de-legumes.jpeg"><div class="info"><h3>Soupe</h3></div></div>
-        <div class="card" onclick="openRecipe('gratin')"><img src="https://assets.afcdn.com/recipe/20180328/78129_w1024h768.jpg"><div class="info"><h3>Gratin dauphinois</h3></div></div>
-        <div class="card" onclick="openRecipe('tartiflette')"><img src="https://img.cuisineaz.com/660x660/2021/12/14/i159948-tartiflette.jpeg"><div class="info"><h3>Tartiflette</h3></div></div>
-        <div class="card" onclick="openRecipe('blanquette')"><img src="https://img.cuisineaz.com/660x660/2021/12/14/i159949-blanquette-de-veau.jpeg"><div class="info"><h3>Blanquette</h3></div></div>
-        <div class="card" onclick="openRecipe('ratatouille')"><img src="https://img.cuisineaz.com/660x660/2021/12/14/i159950-ratatouille.jpeg"><div class="info"><h3>Ratatouille</h3></div></div>
-        <div class="card" onclick="openRecipe('poulet')"><img src="https://img.cuisineaz.com/660x660/2021/12/14/i159951-poulet-roti.jpeg"><div class="info"><h3>Poulet rôti</h3></div></div>
-      </div>
-      <button class="scroll-buttons scroll-right" onclick="scrollRow('plats-row', 300)">&#10095;</button>
-    </div>
-  </div>  <div class="section" id="desserts">
-    <div class="title">Desserts</div>
-    <div class="card-row-container">
-      <button class="scroll-buttons scroll-left" onclick="scrollRow('desserts-row', -300)">&#10094;</button>
-      <div class="card-row" id="desserts-row">
-        <!-- Desserts (10) -->
-        <div class="card" onclick="openRecipe('tiramisu')"><img src="https://assets.afcdn.com/recipe/20170607/67492_w1024h768.jpg"><div class="info"><h3>Tiramisu</h3></div></div>
-        <div class="card" onclick="openRecipe('fondant')"><img src="https://img.cuisineaz.com/660x660/2021/12/14/i159952-fondant-chocolat.jpeg"><div class="info"><h3>Fondant</h3></div></div>
-        <div class="card" onclick="openRecipe('creme-brulee')"><img src="https://img.cuisineaz.com/660x660/2021/12/14/i159953-creme-brulee.jpeg"><div class="info"><h3>Crème brûlée</h3></div></div>
-        <div class="card" onclick="openRecipe('flan')"><img src="https://img.cuisineaz.com/660x660/2021/12/14/i159954-flan.jpeg"><div class="info"><h3>Flan</h3></div></div>
-        <div class="card" onclick="openRecipe('mousse')"><img src="https://img.cuisineaz.com/660x660/2021/12/14/i159955-mousse-chocolat.jpeg"><div class="info"><h3>Mousse chocolat</h3></div></div>
-        <div class="card" onclick="openRecipe('panna')"><img src="https://img.cuisineaz.com/660x660/2021/12/14/i159956-panna-cotta.jpeg"><div class="info"><h3>Panna Cotta</h3></div></div>
-        <div class="card" onclick="openRecipe('ile')"><img src="https://img.cuisineaz.com/660x660/2021/12/14/i159957-ile-flottante.jpeg"><div class="info"><h3>Île flottante</h3></div></div>
-        <div class="card" onclick="openRecipe('tarte')"><img src="https://img.cuisineaz.com/660x660/2021/12/14/i159958-tarte-aux-pommes.jpeg"><div class="info"><h3>Tarte aux pommes</h3></div></div>
-        <div class="card" onclick="openRecipe('gateau')"><img src="https://img.cuisineaz.com/660x660/2021/12/14/i159959-gateau-yaourt.jpeg"><div class="info"><h3>Gâteau yaourt</h3></div></div>
-        <div class="card" onclick="openRecipe('clafoutis')"><img src="https://img.cuisineaz.com/660x660/2021/12/14/i159960-clafoutis.jpeg"><div class="info"><h3>Clafoutis</h3></div></div>
-      </div>
-      <button class="scroll-buttons scroll-right" onclick="scrollRow('desserts-row', 300)">&#10095;</button>
-    </div>
-  </div>  <div class="section" id="apero">
-    <div class="title">Apéro</div>
-    <div class="card-row-container">
-      <button class="scroll-buttons scroll-left" onclick="scrollRow('apero-row', -300)">&#10094;</button>
-      <div class="card-row" id="apero-row">
-        <!-- Apéro (10) -->
-        <div class="card" onclick="openRecipe('minipizza')"><img src="https://assets.afcdn.com/recipe/20201203/116676_w1024h768.jpg"><div class="info"><h3>Mini pizza</h3></div></div>
-        <div class="card" onclick="openRecipe('feuillete')"><img src="https://img.cuisineaz.com/660x660/2021/12/14/i159961-feuilletes.jpeg"><div class="info"><h3>Feuilletés</h3></div></div>
-        <div class="card" onclick="openRecipe('samoussa')"><img src="https://img.cuisineaz.com/660x660/2021/12/14/i159962-samoussa.jpeg"><div class="info"><h3>Samoussas</h3></div></div>
-        <div class="card" onclick="openRecipe('cake')"><img src="https://img.cuisineaz.com/660x660/2021/12/14/i159963-cake-sale.jpeg"><div class="info"><h3>Cake salé</h3></div></div>
-        <div class="card" onclick="openRecipe('wrap')"><img src="https://img.cuisineaz.com/660x660/2021/12/14/i159964-wrap.jpeg"><div class="info"><h3>Wrap</h3></div></div>
-        <div class="card" onclick="openRecipe('roule')"><img src="https://img.cuisineaz.com/660x660/2021/12/14/i159965-roule-jambon.jpeg"><div class="info"><h3>Roulés jambon</h3></div></div>
-        <div class="card" onclick="openRecipe('toast')"><img src="https://img.cuisineaz.com/660x660/2021/12/14/i159966-toast-chevre.jpeg"><div class="info"><h3>Toasts chèvre</h3></div></div>
-        <div class="card" onclick="openRecipe('tapas')"><img src="https://img.cuisineaz.com/660x660/2021/12/14/i159967-tapas.jpeg"><div class="info"><h3>Tapas</h3></div></div>
-        <div class="card" onclick="openRecipe('gougères')"><img src="https://img.cuisineaz.com/660x660/2021/12/14/i159968-gougeres.jpeg"><div class="info"><h3>Gougères</h3></div></div>
-        <div class="card" onclick="openRecipe('nuggets')"><img src="https://img.cuisineaz.com/660x660/2021/12/14/i159969-nuggets.jpeg"><div class="info"><h3>Nuggets maison</h3></div></div>
-      </div>
-      <button class="scroll-buttons scroll-right" onclick="scrollRow('apero-row', 300)">&#10095;</button>
-    </div>
+  <header>FoodFlix</header>  <div class="grid-recipes">
+    <!-- 30 Recettes -->
+    <div class="recipe-card" onclick="openRecipe('lasagnes')"><img src="https://img.cuisineaz.com/660x660/2016/02/29/i100158-lasagnes-maison.jpeg" alt="Lasagnes"><div class="info"><h3>Lasagnes</h3></div></div>
+    <div class="recipe-card" onclick="openRecipe('couscous')"><img src="https://assets.afcdn.com/recipe/20221201/136312_w1024h768c1cx1920cy1280cxt0cyt0cxb1920cyb2560.jpg" alt="Couscous royal"><div class="info"><h3>Couscous royal</h3></div></div>
+    <div class="recipe-card" onclick="openRecipe('croque-monsieur')"><img src="https://img.cuisineaz.com/660x660/2019/04/29/i146776-croque-monsieur.jpeg" alt="Croque-Monsieur"><div class="info"><h3>Croque-Monsieur</h3></div></div>
+    <div class="recipe-card" onclick="openRecipe('tiramisu')"><img src="https://assets.afcdn.com/recipe/20170607/67492_w1024h768.jpg" alt="Tiramisu"><div class="info"><h3>Tiramisu</h3></div></div>
+    <div class="recipe-card" onclick="openRecipe('burger')"><img src="https://img.cuisineaz.com/660x660/2019/02/26/i145501-burger-fait-maison.jpeg" alt="Burger maison"><div class="info"><h3>Burger maison</h3></div></div>
+    <div class="recipe-card" onclick="openRecipe('tajine')"><img src="https://assets.afcdn.com/recipe/20201210/116949_w1024h768.jpg" alt="Tajine poulet"><div class="info"><h3>Tajine poulet</h3></div></div>
+    <div class="recipe-card" onclick="openRecipe('spaghetti')"><img src="https://img.cuisineaz.com/660x660/2021/12/14/i159947-spaghetti-bolognaise.jpeg" alt="Spaghetti bolognaise"><div class="info"><h3>Spaghetti bolognaise</h3></div></div>
+    <div class="recipe-card" onclick="openRecipe('quiche')"><img src="https://assets.afcdn.com/recipe/20171220/75555_w1024h768c1cx1920cy1280.jpg" alt="Quiche lorraine"><div class="info"><h3>Quiche lorraine</h3></div></div>
+    <div class="recipe-card" onclick="openRecipe('gratin')"><img src="https://assets.afcdn.com/recipe/20180328/78129_w1024h768.jpg" alt="Gratin dauphinois"><div class="info"><h3>Gratin dauphinois</h3></div></div>
+    <div class="recipe-card" onclick="openRecipe('pizza')"><img src="https://img.cuisineaz.com/660x660/2015/12/09/i117943-pizza-maison.jpeg" alt="Pizza maison"><div class="info"><h3>Pizza maison</h3></div></div><!-- Desserts -->
+<div class="recipe-card" onclick="openRecipe('fondant')"><img src="https://img.cuisineaz.com/660x660/2016/02/12/i100046-fondant-au-chocolat.jpeg" alt="Fondant chocolat"><div class="info"><h3>Fondant chocolat</h3></div></div>
+<div class="recipe-card" onclick="openRecipe('mousse')"><img src="https://img.cuisineaz.com/660x660/2021/06/08/i158572-mousse-au-chocolat.jpeg" alt="Mousse chocolat"><div class="info"><h3>Mousse chocolat</h3></div></div>
+<div class="recipe-card" onclick="openRecipe('cheesecake')"><img src="https://img.cuisineaz.com/660x660/2021/03/18/i158000-cheesecake-new-yorkais.jpeg" alt="Cheesecake"><div class="info"><h3>Cheesecake</h3></div></div>
+<div class="recipe-card" onclick="openRecipe('cremebrulee')"><img src="https://img.cuisineaz.com/660x660/2015/04/22/i113308-creme-brulee.jpeg" alt="Crème brûlée"><div class="info"><h3>Crème brûlée</h3></div></div>
+<div class="recipe-card" onclick="openRecipe('cookies')"><img src="https://img.cuisineaz.com/660x660/2022/05/04/i165007-cookies-moelleux.jpeg" alt="Cookies"><div class="info"><h3>Cookies</h3></div></div>
+<div class="recipe-card" onclick="openRecipe('brownie')"><img src="https://img.cuisineaz.com/660x660/2020/07/08/i152843-brownie.jpeg" alt="Brownie"><div class="info"><h3>Brownie</h3></div></div>
+<div class="recipe-card" onclick="openRecipe('clafoutis')"><img src="https://img.cuisineaz.com/660x660/2022/06/08/i165601-clafoutis.jpeg" alt="Clafoutis"><div class="info"><h3>Clafoutis</h3></div></div>
+<div class="recipe-card" onclick="openRecipe('gaufres')"><img src="https://img.cuisineaz.com/660x660/2021/01/18/i157452-gaufres.jpeg" alt="Gaufres"><div class="info"><h3>Gaufres</h3></div></div>
+<div class="recipe-card" onclick="openRecipe('pancakes')"><img src="https://img.cuisineaz.com/660x660/2016/03/15/i101318-pancakes.jpeg" alt="Pancakes"><div class="info"><h3>Pancakes</h3></div></div>
+<div class="recipe-card" onclick="openRecipe('tartecitron')"><img src="https://img.cuisineaz.com/660x660/2022/06/16/i165731-tarte-au-citron.jpeg" alt="Tarte au citron"><div class="info"><h3>Tarte au citron</h3></div></div>
+
+<!-- Apéros -->
+<div class="recipe-card" onclick="openRecipe('minipizza')"><img src="https://assets.afcdn.com/recipe/20201203/116676_w1024h768.jpg" alt="Mini pizza"><div class="info"><h3>Mini pizza</h3></div></div>
+<div class="recipe-card" onclick="openRecipe('feuilletes')"><img src="https://img.cuisineaz.com/660x660/2015/12/08/i117918-feuilletes-apero.jpeg" alt="Feuilletés apéro"><div class="info"><h3>Feuilletés apéro</h3></div></div>
+<div class="recipe-card" onclick="openRecipe('gougeres')"><img src="https://img.cuisineaz.com/660x660/2017/04/26/i127683-gougeres.jpeg" alt="Gougères"><div class="info"><h3>Gougères</h3></div></div>
+<div class="recipe-card" onclick="openRecipe('cakeolive')"><img src="https://img.cuisineaz.com/660x660/2015/12/14/i118006-cake-aux-olives.jpeg" alt="Cake olives"><div class="info"><h3>Cake aux olives</h3></div></div>
+<div class="recipe-card" onclick="openRecipe('saucissonpate')"><img src="https://img.cuisineaz.com/660x660/2021/07/02/i158895-saucisson-en-pate.jpeg" alt="Saucisson pâte"><div class="info"><h3>Saucisson en pâte</h3></div></div>
+<div class="recipe-card" onclick="openRecipe('wraps')"><img src="https://img.cuisineaz.com/660x660/2016/03/15/i101304-wraps.jpeg" alt="Wraps froids"><div class="info"><h3>Wraps froids</h3></div></div>
+<div class="recipe-card" onclick="openRecipe('nuggets')"><img src="https://img.cuisineaz.com/660x660/2017/05/10/i127859-nuggets-maison.jpeg" alt="Nuggets maison"><div class="info"><h3>Nuggets maison</h3></div></div>
+<div class="recipe-card" onclick="openRecipe('tomateschevre')"><img src="https://img.cuisineaz.com/660x660/2015/12/07/i117870-tomates-au-chevre.jpeg" alt="Tomates chèvre"><div class="info"><h3>Tomates au chèvre</h3></div></div>
+<div class="recipe-card" onclick="openRecipe('rillettes')"><img src="https://img.cuisineaz.com/660x660/2016/02/03/i99751-rillettes.jpeg" alt="Rillettes maison"><div class="info"><h3>Rillettes maison</h3></div></div>
+<div class="recipe-card" onclick="openRecipe('tapas')"><img src="https://img.cuisineaz.com/660x660/2015/12/07/i117853-tapas.jpeg" alt="Tapas"><div class="info"><h3>Tapas</h3></div></div>
+
   </div>  <footer>
     © 2025 FoodFlix - Tous droits réservés
   </footer>  <script>
-    function scrollToCategory(id) {
-      const el = document.getElementById(id);
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
-    }
-    function scrollRow(id, val) {
-      document.getElementById(id).scrollLeft += val;
-    }
     function openRecipe(name) {
       window.location.href = name + ".html";
     }
   </script></body>
-  </html>
+</html>
