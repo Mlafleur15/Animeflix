@@ -5,14 +5,12 @@
   <title>FoodFlix</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
-    * {
-      box-sizing: border-box;
-    }
     body {
       margin: 0;
       background-color: #141414;
       font-family: Arial, sans-serif;
       color: #fff;
+      overflow-x: hidden;
       display: flex;
       flex-direction: column;
       min-height: 100vh;
@@ -25,30 +23,31 @@
       font-weight: bold;
       color: red;
     }
-    .category-section {
-      padding: 1rem;
+    h2 {
+      margin-left: 1rem;
+      margin-top: 2rem;
     }
-    .category-title {
-      font-size: 1.2rem;
-      margin: 1rem;
+    .category-container {
+      position: relative;
     }
     .carousel {
       display: flex;
       overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
+      scroll-behavior: smooth;
+      padding: 1rem;
+      gap: 1rem;
     }
     .carousel::-webkit-scrollbar {
       display: none;
     }
     .recipe-card {
       flex: 0 0 auto;
-      scroll-snap-align: start;
+      width: calc(100% / 5 - 1rem);
+      max-width: 220px;
       background-color: #1e1e1e;
       border-radius: 8px;
       overflow: hidden;
-      margin-right: 1rem;
-      width: calc(100% / 5 - 1rem);
+      cursor: pointer;
     }
     .recipe-card img {
       width: 100%;
@@ -62,6 +61,19 @@
       font-size: 1rem;
       margin: 0;
     }
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 2rem;
+      color: white;
+      background-color: rgba(0,0,0,0.5);
+      padding: 0.5rem;
+      cursor: pointer;
+      z-index: 2;
+    }
+    .left-arrow { left: 0; }
+    .right-arrow { right: 0; }
     @media (max-width: 768px) {
       .recipe-card {
         width: calc(100% / 4 - 1rem);
@@ -78,50 +90,42 @@
   </style>
 </head>
 <body>
-  <header>FoodFlix</header>  <div class="category-section">
-    <div class="category-title">Plats</div>
-    <div class="carousel">
-      <!-- Plats -->
-      <div class="recipe-card" onclick="openRecipe('lasagnes')"><img src="img/lasagnes.jpg" alt="Lasagnes"><div class="info"><h3>Lasagnes</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('couscous')"><img src="img/couscous.jpg" alt="Couscous"><div class="info"><h3>Couscous</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('tajine')"><img src="img/tajine.jpg" alt="Tajine"><div class="info"><h3>Tajine</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('pizza')"><img src="img/pizza.jpg" alt="Pizza"><div class="info"><h3>Pizza</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('quiche')"><img src="img/quiche.jpg" alt="Quiche"><div class="info"><h3>Quiche</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('spaghetti')"><img src="img/spaghetti.jpg" alt="Spaghetti"><div class="info"><h3>Spaghetti</h3></div></div>
-    </div>
-  </div>  <div class="category-section">
-    <div class="category-title">Desserts</div>
-    <div class="carousel">
-      <!-- Desserts -->
-      <div class="recipe-card" onclick="openRecipe('tiramisu')"><img src="img/tiramisu.jpg" alt="Tiramisu"><div class="info"><h3>Tiramisu</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('cheesecake')"><img src="img/cheesecake.jpg" alt="Cheesecake"><div class="info"><h3>Cheesecake</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('fondant')"><img src="img/fondant.jpg" alt="Fondant"><div class="info"><h3>Fondant</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('cookies')"><img src="img/cookies.jpg" alt="Cookies"><div class="info"><h3>Cookies</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('mousse')"><img src="img/mousse.jpg" alt="Mousse"><div class="info"><h3>Mousse</h3></div></div>
-    </div>
-  </div>  <div class="category-section">
-    <div class="category-title">Apéros</div>
-    <div class="carousel">
-      <!-- Apéros -->
-      <div class="recipe-card" onclick="openRecipe('gougeres')"><img src="img/gougeres.jpg" alt="Gougères"><div class="info"><h3>Gougères</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('rillettes')"><img src="img/rillettes.jpg" alt="Rillettes"><div class="info"><h3>Rillettes</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('tapas')"><img src="img/tapas.jpg" alt="Tapas"><div class="info"><h3>Tapas</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('feuilletes')"><img src="img/feuilletes.jpg" alt="Feuilletés"><div class="info"><h3>Feuilletés</h3></div></div>
-    </div>
-  </div>  <div class="category-section">
-    <div class="category-title">Rapide</div>
-    <div class="carousel">
-      <!-- Rapide -->
-      <div class="recipe-card" onclick="openRecipe('wraps')"><img src="img/wraps.jpg" alt="Wraps"><div class="info"><h3>Wraps</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('croque-monsieur')"><img src="img/croque.jpg" alt="Croque-Monsieur"><div class="info"><h3>Croque-Monsieur</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('nuggets')"><img src="img/nuggets.jpg" alt="Nuggets"><div class="info"><h3>Nuggets</h3></div></div>
-      <div class="recipe-card" onclick="openRecipe('pancakes')"><img src="img/pancakes.jpg" alt="Pancakes"><div class="info"><h3>Pancakes</h3></div></div>
-    </div>
-  </div>  <footer>
+  <header>FoodFlix</header>  <div id="categories"></div>  <footer>
     © 2025 FoodFlix - Tous droits réservés
   </footer>  <script>
+    const categories = {
+      "Plats": ["Lasagnes", "Couscous royal", "Croque-Monsieur", "Burger maison", "Tajine poulet", "Spaghetti bolognaise", "Pizza maison", "Gratin dauphinois", "Quiche lorraine", "Wraps froids"],
+      "Desserts": ["Tiramisu", "Fondant chocolat", "Mousse chocolat", "Cheesecake", "Crème brûlée", "Cookies", "Brownie", "Clafoutis", "Gaufres", "Pancakes"],
+      "Apéro": ["Feuilletés apéro", "Gougères", "Cake aux olives", "Saucisson en pâte", "Tomates au chèvre", "Mini pizza", "Tapas", "Rillettes maison", "Bruschetta", "Accras de morue"],
+      "Rapide": ["Wraps froids", "Nuggets maison", "Mini pizza", "Croque-Monsieur", "Salade composée", "Sandwich au thon", "Pâtes au beurre", "Omelette", "Soupe express", "Tartine au fromage"],
+      "Marocaine": ["Tajine poulet", "Couscous royal", "Pastilla", "Harira", "Briouates", "Baghrir", "Rghaif", "Mkhanfar", "Zaalouk", "Chorba"],
+      "Portugaise": ["Bacalhau à Brás", "Pastéis de nata", "Francesinha", "Pão com chouriço", "Caldo verde", "Polvo à lagareiro", "Arroz doce", "Bifana", "Feijoada", "Rabanadas"]
+    };
+
+    const container = document.getElementById('categories');
+
+    Object.entries(categories).forEach(([cat, items]) => {
+      const section = document.createElement('section');
+      section.className = 'category-container';
+      section.innerHTML = `<h2>${cat}</h2>
+        <i class="fas fa-chevron-left arrow left-arrow" onclick="scrollLeft(this)"></i>
+        <div class="carousel">${items.map(item => `
+          <div class="recipe-card" onclick="openRecipe('${item.toLowerCase().replace(/ /g, '-')}")">
+            <img src="img/${item.toLowerCase().replace(/ /g, '-')}.jpg" alt="${item}" />
+            <div class="info"><h3>${item}</h3></div>
+          </div>`).join('')}</div>
+        <i class="fas fa-chevron-right arrow right-arrow" onclick="scrollRight(this)"></i>`;
+      container.appendChild(section);
+    });
+
+    function scrollLeft(el) {
+      el.nextElementSibling.scrollBy({ left: -300, behavior: 'smooth' });
+    }
+    function scrollRight(el) {
+      el.previousElementSibling.scrollBy({ left: 300, behavior: 'smooth' });
+    }
     function openRecipe(name) {
-      window.location.href = "recettes/" + name + ".html";
+      window.location.href = `recettes/${name}.html`;
     }
   </script></body>
 </html>
