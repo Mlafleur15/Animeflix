@@ -1,0 +1,176 @@
+<!DOCTYPE html><html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AnimeFlix</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      background-color: #141414;
+      font-family: Arial, sans-serif;
+      color: #fff;
+    }
+    header {
+      background-color: #000;
+      padding: 1rem;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: red;
+    }
+    .section {
+      padding: 1rem;
+    }
+    .title {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+    .anime-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .anime-card {
+      background-color: #1e1e1e;
+      width: 200px;
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .anime-card img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+    }
+    .anime-card .info {
+      padding: 0.5rem;
+    }
+    .anime-card .info h3 {
+      font-size: 1rem;
+      margin: 0 0 0.3rem 0;
+    }
+    .episode-list {
+      display: none;
+      padding: 1rem;
+    }
+    .episode-list.active {
+      display: block;
+    }
+    .episode-list h2 {
+      color: red;
+      margin-bottom: 1rem;
+    }
+    .episode {
+      margin-bottom: 0.5rem;
+    }
+    .episode a {
+      color: #00bfff;
+      text-decoration: none;
+    }
+    .category-buttons {
+      display: flex;
+      gap: 1rem;
+      padding: 1rem;
+    }
+    .category-buttons button {
+      background-color: red;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: #000;
+      color: #aaa;
+      font-size: 0.8rem;
+    }
+  </style>
+</head>
+<body>
+  <header>AnimeFlix</header>  <!-- Boutons de catégories -->  <div class="category-buttons">
+    <button onclick="scrollToCategory('anime')">Animé</button>
+    <button onclick="scrollToCategory('action')">Action</button>
+    <button onclick="scrollToCategory('romance')">Romance</button>
+  </div>  <!-- Section catégorie animé -->  <div class="section" id="anime">
+    <div class="title">Catégorie : Animé</div>
+    <div class="anime-grid">
+      <!-- Série : Death Note -->
+      <div class="anime-card" onclick="showEpisodes('deathnote')">
+        <img src="https://i.ytimg.com/vi/NlJZ-YgAt-c/maxresdefault.jpg" alt="Death Note">
+        <div class="info">
+          <h3>Death Note</h3>
+        </div>
+      </div>
+    </div>
+  </div>  <!-- Liste des épisodes de Death Note -->  <div class="episode-list" id="deathnote">
+    <h2>Death Note - Saison 1</h2><!-- Exemple d'épisodes avec commentaires -->
+
+<!-- Épisode 1 -->
+<div class="episode">
+  <a href="https://www.youtube.com/watch?v=VLWk3S2tSPk" target="_blank">
+    Épisode 1 - Renaissance
+  </a>
+</div>
+
+<!-- Épisode 2 -->
+<div class="episode">
+  <a href="https://www.youtube.com/watch?v=pkUe3LcvRMg" target="_blank">
+    Épisode 2 - Duel
+  </a>
+</div>
+
+<!-- Épisode 3 -->
+<div class="episode">
+  <a href="https://www.youtube.com/watch?v=GEwWZBdQqYc" target="_blank">
+    Épisode 3 - Affrontement
+  </a>
+</div>
+
+<!-- Épisode 4 -->
+<div class="episode">
+  <a href="https://www.youtube.com/watch?v=XYqZgTfuKp4" target="_blank">
+    Épisode 4 - Poursuite
+  </a>
+</div>
+
+<!-- Épisode 5 -->
+<div class="episode">
+  <a href="https://www.youtube.com/watch?v=6hNE7AEl2og" target="_blank">
+    Épisode 5 - Déclaration
+  </a>
+</div>
+
+<!-- Copie ce modèle pour les prochains épisodes -->
+<!--
+<div class="episode">
+  <a href="LIEN_YOUTUBE" target="_blank">
+    Épisode X - TITRE
+  </a>
+</div>
+-->
+
+<button onclick="hideEpisodes()">Retour</button>
+
+  </div>  <footer>
+    © 2025 AnimeFlix - Tous droits réservés
+  </footer>  <script>
+    function showEpisodes(id) {
+      document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
+      document.querySelectorAll('.episode-list').forEach(e => e.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+
+    function hideEpisodes() {
+      document.querySelectorAll('.section').forEach(s => s.style.display = 'block');
+      document.querySelectorAll('.episode-list').forEach(e => e.classList.remove('active'));
+    }
+
+    function scrollToCategory(id) {
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    }
+  </script></body>
+</html>
