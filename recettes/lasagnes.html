@@ -1,15 +1,16 @@
-<!DOCTYPE html>
-<html lang="fr">
+<!DOCTYPE html><html lang="fr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Recette Lasagnes - FoodFlix</title>
+  <title>FoodFlix</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
     body {
       margin: 0;
       background-color: #141414;
       font-family: Arial, sans-serif;
       color: #fff;
+      overflow-x: hidden;
     }
     header {
       background-color: #000;
@@ -19,71 +20,143 @@
       font-weight: bold;
       color: red;
     }
-    .container {
-      max-width: 800px;
-      margin: auto;
-      padding: 1rem;
-    }
-    img {
-      width: 100%;
-      max-height: 400px;
-      object-fit: cover;
-      border-radius: 10px;
-      margin-bottom: 1rem;
-    }
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
-    }
     h2 {
+      margin: 1rem;
       color: red;
-      margin-top: 2rem;
     }
-    ul {
-      padding-left: 1.2rem;
+    .category-row {
+      position: relative;
+      margin-bottom: 2rem;
     }
-    li {
-      margin-bottom: 0.5rem;
+    .recipe-row {
+      display: flex;
+      overflow-x: auto;
+      gap: 1rem;
+      padding: 0 2rem;
+      scroll-behavior: smooth;
     }
-    a {
-      display: inline-block;
-      margin-top: 2rem;
-      color: red;
-      text-decoration: none;
+    .recipe-card {
+      background-color: #1e1e1e;
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+      min-width: 180px;
+      flex-shrink: 0;
+    }
+    .recipe-card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+    }
+    .recipe-card .info {
+      padding: 0.5rem;
+    }
+    .recipe-card .info h3 {
+      font-size: 1rem;
+      margin: 0;
+    }
+    .scroll-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0, 0, 0, 0.5);
+      border: none;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+      padding: 0.5rem;
+      z-index: 10;
+    }
+    .scroll-left {
+      left: 0;
+    }
+    .scroll-right {
+      right: 0;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: #000;
+      color: #aaa;
+      font-size: 0.8rem;
     }
   </style>
 </head>
 <body>
-  <header>FoodFlix</header>
-  <div class="container">
-    <img src="../img/lasagnes.jpeg" alt="Lasagnes maison" />
-    <h1>Lasagnes Maison</h1>
-    <p>Des lasagnes savoureuses faites maison, parfaites pour un repas en famille ou entre potes.</p>
+  <header>FoodFlix</header>  <!-- Section par catégorie -->  <div id="content"></div>  <footer>
+    © 2025 FoodFlix - Tous droits réservés
+  </footer>  <script>
+    const categories = {
+      "Plats": ["lasagnes", "couscous", "croque-monsieur", "tajine", "pizza", "spaghetti", "quiche", "gratin", "burger", "wraps"],
+      "Desserts": ["tiramisu", "fondant", "mousse", "cheesecake", "cremebrulee", "cookies", "brownie", "clafoutis", "gaufres", "pancakes"],
+      "Apéro": ["feuilletes", "gougeres", "cakeolive", "saucissonpate", "tomateschevre", "rillettes", "tapas", "minipizza", "nuggets"],
+      "Rapide": ["wraps", "croque-monsieur", "pancakes", "cookies", "nuggets", "minipizza", "feuilletes", "gaufres", "rillettes", "tapas"]
+    };
 
-    <h2>Ingrédients :</h2>
-    <ul>
-      <li>500g de viande hachée</li>
-      <li>1 oignon émincé</li>
-      <li>400g de sauce tomate</li>
-      <li>Feuilles de lasagnes</li>
-      <li>50g de beurre</li>
-      <li>50g de farine</li>
-      <li>50cl de lait</li>
-      <li>Fromage râpé (gruyère ou mozzarella)</li>
-      <li>Sel, poivre, muscade</li>
-    </ul>
+    const images = {
+      "lasagnes": "lasagnes.jpg",
+      "couscous": "couscous.jpg",
+      "croque-monsieur": "croque-monsieur.jpg",
+      "tajine": "tajine.jpg",
+      "pizza": "pizza.jpg",
+      "spaghetti": "spaghetti.jpg",
+      "quiche": "quiche.jpg",
+      "gratin": "gratin.jpg",
+      "burger": "burger.jpg",
+      "wraps": "wraps.jpg",
+      "tiramisu": "tiramisu.jpg",
+      "fondant": "fondant.jpg",
+      "mousse": "mousse.jpg",
+      "cheesecake": "cheesecake.jpg",
+      "cremebrulee": "cremebrulee.jpg",
+      "cookies": "cookies.jpg",
+      "brownie": "brownie.jpg",
+      "clafoutis": "clafoutis.jpg",
+      "gaufres": "gaufres.jpg",
+      "pancakes": "pancakes.jpg",
+      "feuilletes": "feuilletes.jpg",
+      "gougeres": "gougeres.jpg",
+      "cakeolive": "cakeolive.jpg",
+      "saucissonpate": "saucissonpate.jpg",
+      "tomateschevre": "tomateschevre.jpg",
+      "rillettes": "rillettes.jpg",
+      "tapas": "tapas.jpg",
+      "minipizza": "minipizza.jpg",
+      "nuggets": "nuggets.jpg"
+    };
 
-    <h2>Préparation :</h2>
-    <ul>
-      <li>Faire revenir l'oignon et la viande hachée dans une poêle.</li>
-      <li>Ajouter la sauce tomate, saler, poivrer et laisser mijoter 15 min.</li>
-      <li>Préparer la béchamel : faire fondre le beurre, ajouter la farine puis le lait progressivement en remuant. Saler, poivrer et ajouter une pincée de muscade.</li>
-      <li>Dans un plat, alterner couches de lasagnes, viande, béchamel, et fromage râpé.</li>
-      <li>Finir par une couche de béchamel et du fromage.</li>
-      <li>Enfourner 30 à 40 min à 180°C.</li>
-    </ul>
+    const content = document.getElementById("content");
 
-    <a href="../index.html">&larr; Retour à l'accueil</a>
-  </div>
-</body>
+    Object.keys(categories).forEach(cat => {
+      const section = document.createElement("div");
+      section.className = "category-row";
+      section.innerHTML = `
+        <h2>${cat}</h2>
+        <button class="scroll-btn scroll-left" onclick="scrollRow(this, -1)">&#8249;</button>
+        <div class="recipe-row">
+          ${categories[cat].map(name => `
+            <div class="recipe-card" onclick="openRecipe('${name}')">
+              <img src="img/${images[name]}" alt="${name}">
+              <div class="info"><h3>${capitalize(name)}</h3></div>
+            </div>
+          `).join('')}
+        </div>
+        <button class="scroll-btn scroll-right" onclick="scrollRow(this, 1)">&#8250;</button>
+      `;
+      content.appendChild(section);
+    });
+
+    function scrollRow(button, direction) {
+      const row = button.parentElement.querySelector(".recipe-row");
+      row.scrollBy({ left: direction * 300, behavior: 'smooth' });
+    }
+
+    function openRecipe(name) {
+      window.location.href = `recettes/${name}.html`;
+    }
+
+    function capitalize(text) {
+      return text.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+    }
+  </script></body>
 </html>
