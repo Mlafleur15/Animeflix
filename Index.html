@@ -93,35 +93,67 @@
   </style>
 </head>
 <body>
-  <header>FoodFlix</header>  <!-- Boutons de catégories -->  <div class="category-buttons">
+  <header>FoodFlix</header>  <div class="category-buttons">
     <button onclick="scrollToCategory('plats')">Plats</button>
     <button onclick="scrollToCategory('desserts')">Desserts</button>
     <button onclick="scrollToCategory('rapide')">Rapide</button>
-  </div>  <!-- Section catégorie Plats -->  <div class="section" id="plats">
+  </div>  <!-- Section Plats -->  <div class="section" id="plats">
     <div class="title">Catégorie : Plats</div>
     <div class="card-grid">
-      <!-- Ex. de plat principal -->
       <div class="card" onclick="showRecipes('lasagnes')">
-        <!-- Tu peux remplacer ce lien par une image de ton choix -->
         <img src="https://img.cuisineaz.com/660x660/2016/02/29/i100158-lasagnes-maison.jpeg" alt="Lasagnes" />
         <div class="info">
           <h3>Lasagnes maison</h3>
         </div>
       </div>
+      <div class="card" onclick="showRecipes('couscous')">
+        <img src="https://assets.afcdn.com/recipe/20221201/136312_w1024h768c1cx1920cy1280cxt0cyt0cxb1920cyb2560.jpg" alt="Couscous" />
+        <div class="info">
+          <h3>Couscous royal</h3>
+        </div>
+      </div>
     </div>
-  </div>  <!-- Liste des recettes Lasagnes -->  <div class="recipe-list" id="lasagnes">
+  </div>  <!-- Section Rapide -->  <div class="section" id="rapide">
+    <div class="title">Catégorie : Rapide</div>
+    <div class="card-grid">
+      <div class="card" onclick="showRecipes('croque')">
+        <img src="https://img.cuisineaz.com/660x660/2016/03/04/i94126-croque-monsieur.jpeg" alt="Croque-Monsieur" />
+        <div class="info">
+          <h3>Croque-Monsieur</h3>
+        </div>
+      </div>
+    </div>
+  </div>  <!-- Recette Lasagnes -->  <div class="recipe-list" id="lasagnes">
     <h2>Recette : Lasagnes maison</h2>
     <div class="recipe">
       <h4>Ingrédients :</h4>
-      <p>- 1 paquet de pâtes à lasagnes<br>
-         - 500g de viande hachée<br>
-         - 1 oignon, sauce tomate, béchamel, fromage râpé</p>
+      <p>- Pâtes à lasagnes<br>- 500g viande hachée<br>- Sauce tomate, oignon, béchamel, fromage râpé</p>
     </div>
     <div class="recipe">
       <h4>Étapes :</h4>
-      <p>1. Faire revenir l'oignon, ajouter la viande, puis la sauce tomate.<br>
-         2. Dans un plat : pâte, sauce, béchamel, fromage. Répéter les couches.<br>
-         3. Cuire au four à 180°C pendant 35 min.</p>
+      <p>Faire revenir l'oignon, ajouter la viande puis la sauce. Monter les couches. Cuire à 180°C pendant 35 min.</p>
+    </div>
+    <button onclick="hideRecipes()">Retour</button>
+  </div>  <!-- Recette Couscous -->  <div class="recipe-list" id="couscous">
+    <h2>Recette : Couscous royal</h2>
+    <div class="recipe">
+      <h4>Ingrédients :</h4>
+      <p>- Semoule de blé<br>- Poulet, merguez, légumes variés<br>- Pois chiches, épices ras el hanout</p>
+    </div>
+    <div class="recipe">
+      <h4>Étapes :</h4>
+      <p>Cuire les viandes, les légumes et la semoule à part. Assembler et servir bien chaud avec bouillon épicé.</p>
+    </div>
+    <button onclick="hideRecipes()">Retour</button>
+  </div>  <!-- Recette Croque-Monsieur -->  <div class="recipe-list" id="croque">
+    <h2>Recette : Croque-Monsieur</h2>
+    <div class="recipe">
+      <h4>Ingrédients :</h4>
+      <p>- Pain de mie<br>- Jambon<br>- Fromage<br>- Beurre</p>
+    </div>
+    <div class="recipe">
+      <h4>Étapes :</h4>
+      <p>Beurrer les tranches, ajouter jambon/fromage, refermer. Griller à la poêle ou au four jusqu'à dorure.</p>
     </div>
     <button onclick="hideRecipes()">Retour</button>
   </div>  <footer>
