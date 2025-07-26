@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="fr"><head>
+<!DOCTYPE html><html lang="fr">
+<head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>FoodFlix</title>
@@ -21,6 +22,19 @@
       font-size: 1.5rem;
       font-weight: bold;
       color: red;
+    }
+    nav {
+      background-color: #1e1e1e;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding: 0.5rem;
+    }
+    nav a {
+      color: red;
+      text-decoration: none;
+      font-weight: bold;
     }
     h2 {
       margin-left: 1rem;
@@ -90,6 +104,7 @@
 </head>
 <body>
   <header>FoodFlix</header>
+  <nav id="nav-links"></nav>
   <div id="categories"></div>
   <footer>
     © 2025 FoodFlix - Tous droits réservés
@@ -102,11 +117,19 @@
       "Rapide": ["Wraps froids", "Nuggets maison", "Mini pizza", "Croque-Monsieur", "Salade composée", "Sandwich au thon", "Pâtes au beurre", "Omelette", "Soupe express", "Tartine au fromage"],
       "Marocaine": ["Tajine poulet", "Couscous royal", "Pastilla", "Harira", "Briouates", "Baghrir", "Rghaif", "Mkhanfar", "Zaalouk", "Chorba"],
       "Portugaise": ["Bacalhau à Brás", "Pastéis de nata", "Francesinha", "Pão com chouriço", "Caldo verde", "Polvo à lagareiro", "Arroz doce", "Bifana", "Feijoada", "Rabanadas"]
-    };const container = document.getElementById('categories');
+    };const nav = document.getElementById("nav-links");
+const container = document.getElementById("categories");
 
 Object.entries(categories).forEach(([cat, items]) => {
+  const anchorId = cat.toLowerCase().replace(/ /g, '-');
+  const navLink = document.createElement("a");
+  navLink.href = `#${anchorId}`;
+  navLink.textContent = cat;
+  nav.appendChild(navLink);
+
   const section = document.createElement('section');
   section.className = 'category-container';
+  section.id = anchorId;
   section.innerHTML = `<h2>${cat}</h2>
     <i class="fas fa-chevron-left arrow left-arrow" onclick="scrollLeft(this)"></i>
     <div class="carousel">${items.map(item => `
