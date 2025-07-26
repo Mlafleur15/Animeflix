@@ -1,5 +1,4 @@
-<!DOCTYPE html><html lang="fr">
-<head>
+<!DOCTYPE html><html lang="fr"><head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>FoodFlix</title>
@@ -90,9 +89,12 @@
   </style>
 </head>
 <body>
-  <header>FoodFlix</header>  <div id="categories"></div>  <footer>
+  <header>FoodFlix</header>
+  <div id="categories"></div>
+  <footer>
     © 2025 FoodFlix - Tous droits réservés
-  </footer>  <script>
+  </footer>
+  <script>
     const categories = {
       "Plats": ["Lasagnes", "Couscous royal", "Croque-Monsieur", "Burger maison", "Tajine poulet", "Spaghetti bolognaise", "Pizza maison", "Gratin dauphinois", "Quiche lorraine", "Wraps froids"],
       "Desserts": ["Tiramisu", "Fondant chocolat", "Mousse chocolat", "Cheesecake", "Crème brûlée", "Cookies", "Brownie", "Clafoutis", "Gaufres", "Pancakes"],
@@ -100,32 +102,32 @@
       "Rapide": ["Wraps froids", "Nuggets maison", "Mini pizza", "Croque-Monsieur", "Salade composée", "Sandwich au thon", "Pâtes au beurre", "Omelette", "Soupe express", "Tartine au fromage"],
       "Marocaine": ["Tajine poulet", "Couscous royal", "Pastilla", "Harira", "Briouates", "Baghrir", "Rghaif", "Mkhanfar", "Zaalouk", "Chorba"],
       "Portugaise": ["Bacalhau à Brás", "Pastéis de nata", "Francesinha", "Pão com chouriço", "Caldo verde", "Polvo à lagareiro", "Arroz doce", "Bifana", "Feijoada", "Rabanadas"]
-    };
+    };const container = document.getElementById('categories');
 
-    const container = document.getElementById('categories');
+Object.entries(categories).forEach(([cat, items]) => {
+  const section = document.createElement('section');
+  section.className = 'category-container';
+  section.innerHTML = `<h2>${cat}</h2>
+    <i class="fas fa-chevron-left arrow left-arrow" onclick="scrollLeft(this)"></i>
+    <div class="carousel">${items.map(item => `
+      <div class="recipe-card" onclick="openRecipe('${item.toLowerCase().replace(/ /g, '-')}')">
+        <img src="img/${item.toLowerCase().replace(/ /g, '-')}.jpg" alt="${item}" />
+        <div class="info"><h3>${item}</h3></div>
+      </div>`).join('')}</div>
+    <i class="fas fa-chevron-right arrow right-arrow" onclick="scrollRight(this)"></i>`;
+  container.appendChild(section);
+});
 
-    Object.entries(categories).forEach(([cat, items]) => {
-      const section = document.createElement('section');
-      section.className = 'category-container';
-      section.innerHTML = `<h2>${cat}</h2>
-        <i class="fas fa-chevron-left arrow left-arrow" onclick="scrollLeft(this)"></i>
-        <div class="carousel">${items.map(item => `
-          <div class="recipe-card" onclick="openRecipe('${item.toLowerCase().replace(/ /g, '-')}")">
-            <img src="img/${item.toLowerCase().replace(/ /g, '-')}.jpg" alt="${item}" />
-            <div class="info"><h3>${item}</h3></div>
-          </div>`).join('')}</div>
-        <i class="fas fa-chevron-right arrow right-arrow" onclick="scrollRight(this)"></i>`;
-      container.appendChild(section);
-    });
+function scrollLeft(el) {
+  el.nextElementSibling.scrollBy({ left: -300, behavior: 'smooth' });
+}
+function scrollRight(el) {
+  el.previousElementSibling.scrollBy({ left: 300, behavior: 'smooth' });
+}
+function openRecipe(name) {
+  window.location.href = `recettes/${name}.html`;
+}
 
-    function scrollLeft(el) {
-      el.nextElementSibling.scrollBy({ left: -300, behavior: 'smooth' });
-    }
-    function scrollRight(el) {
-      el.previousElementSibling.scrollBy({ left: 300, behavior: 'smooth' });
-    }
-    function openRecipe(name) {
-      window.location.href = `recettes/${name}.html`;
-    }
-  </script></body>
+  </script>
+</body>
 </html>
