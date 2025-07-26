@@ -23,23 +23,24 @@
       font-weight: bold;
       color: red;
     }
-    .top-categories {
+    .category-nav {
       display: flex;
-      flex-wrap: nowrap;
       overflow-x: auto;
       gap: 1rem;
       padding: 1rem;
-      justify-content: center;
     }
-    .top-categories a {
-      flex: 0 0 auto;
+    .category-nav a {
       background-color: red;
-      color: white;
       padding: 0.5rem 1rem;
       border-radius: 5px;
       text-decoration: none;
+      color: white;
       font-weight: bold;
+      transition: background-color 0.3s;
       white-space: nowrap;
+    }
+    .category-nav a:first-child {
+      margin-left: 1rem;
     }
     h2 {
       margin-left: 1rem;
@@ -109,7 +110,14 @@
 </head>
 <body>
   <header>FoodFlix</header>
-  <div class="top-categories" id="topCategories"></div>
+  <nav class="category-nav">
+    <a href="#Plats">Plats</a>
+    <a href="#Desserts">Desserts</a>
+    <a href="#Apéro">Apéro</a>
+    <a href="#Rapide">Rapide</a>
+    <a href="#Marocaine">Marocaine</a>
+    <a href="#Portugaise">Portugaise</a>
+  </nav>
   <div id="categories"></div>
   <footer>
     © 2025 FoodFlix - Tous droits réservés
@@ -122,22 +130,12 @@
       "Rapide": ["Wraps froids", "Nuggets maison", "Mini pizza", "Croque-Monsieur", "Salade composée", "Sandwich au thon", "Pâtes au beurre", "Omelette", "Soupe express", "Tartine au fromage"],
       "Marocaine": ["Tajine poulet", "Couscous royal", "Pastilla", "Harira", "Briouates", "Baghrir", "Rghaif", "Mkhanfar", "Zaalouk", "Chorba"],
       "Portugaise": ["Bacalhau à Brás", "Pastéis de nata", "Francesinha", "Pão com chouriço", "Caldo verde", "Polvo à lagareiro", "Arroz doce", "Bifana", "Feijoada", "Rabanadas"]
-    };const topCategories = document.getElementById('topCategories');
-const container = document.getElementById('categories');
+    };const container = document.getElementById('categories');
 
 Object.entries(categories).forEach(([cat, items]) => {
-  const id = cat.toLowerCase().replace(/ /g, '-');
-
-  // create top category link
-  const link = document.createElement('a');
-  link.href = `#${id}`;
-  link.textContent = cat;
-  topCategories.appendChild(link);
-
-  // create section
   const section = document.createElement('section');
   section.className = 'category-container';
-  section.id = id;
+  section.id = cat;
   section.innerHTML = `<h2>${cat}</h2>
     <i class="fas fa-chevron-left arrow left-arrow" onclick="scrollLeft(this)"></i>
     <div class="carousel">${items.map(item => `
