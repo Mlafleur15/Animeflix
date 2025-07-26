@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Burger Maison - FoodFlix</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #141414;
+      font-family: Arial, sans-serif;
+      color: #fff;
+    }
+    header {
+      background-color: #000;
+      padding: 1rem;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: red;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      padding: 1rem;
+    }
+    img {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+    h2 {
+      color: red;
+      margin-top: 2rem;
+    }
+    ul {
+      padding-left: 1.2rem;
+    }
+    li {
+      margin-bottom: 0.5rem;
+    }
+    a {
+      display: inline-block;
+      margin-top: 2rem;
+      color: red;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <header>FoodFlix</header>
+  <div class="container">
+    <img src="../img/burger-maison.jpg" alt="Burger maison" />
+    <h1>Burger Maison</h1>
+    <p>Un burger maison juteux, savoureux et bien meilleur que celui du fast-food.</p>
+
+    <h2>Ingrédients :</h2>
+    <ul>
+      <li>2 pains à burger</li>
+      <li>2 steaks hachés</li>
+      <li>4 tranches de fromage (cheddar ou autre)</li>
+      <li>1 oignon</li>
+      <li>2 feuilles de salade</li>
+      <li>1 tomate</li>
+      <li>Sauce au choix (burger, mayonnaise, ketchup...)</li>
+      <li>Beurre, sel, poivre</li>
+    </ul>
+
+    <h2>Préparation :</h2>
+    <ul>
+      <li>Faire revenir les oignons émincés dans un peu de beurre jusqu’à ce qu’ils soient fondants.</li>
+      <li>Cuire les steaks dans une poêle, saler et poivrer. Ajouter les tranches de fromage à la fin pour les faire fondre.</li>
+      <li>Toaster légèrement les pains à burger au four ou à la poêle.</li>
+      <li>Monter le burger : pain, sauce, salade, tomate, oignons, steak/fromage, puis refermer avec le pain.</li>
+      <li>Servir chaud avec des frites ou une salade.</li>
+    </ul>
+
+    <a href="../index.html">&larr; Retour à l'accueil</a>
+  </div>
+</body>
+</html>
